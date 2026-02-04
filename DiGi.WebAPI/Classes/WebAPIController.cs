@@ -5,6 +5,5 @@ namespace DiGi.WebAPI.Classes
 {
     public abstract class WebAPIController : ControllerBase, IWebAPIController
     {
-
     }
 }
