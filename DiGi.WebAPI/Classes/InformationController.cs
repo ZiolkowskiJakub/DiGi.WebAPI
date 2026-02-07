@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace DiGi.WebAPI.Classes
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     public class InformationController : WebAPIController
     {
         private readonly ApplicationPartManager applicationPartManager;
