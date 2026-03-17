@@ -22,6 +22,16 @@ namespace DiGi.WebAPI.Classes
             }
         }
 
+        public static implicit operator string?(UrlBuilder? urlBuilder)
+        {
+            if (urlBuilder is null)
+            {
+                return null;
+            }
+
+            return urlBuilder.ToString();
+        }
+
         /// <summary>
         /// Adds a query parameter with automatic URL encoding.
         /// </summary>
