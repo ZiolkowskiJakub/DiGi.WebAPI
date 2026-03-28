@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 
@@ -9,6 +8,7 @@ namespace DiGi.WebAPI.Classes
     {
         private readonly Dictionary<string, string> dictionary = [];
         private readonly string url;
+
         public UrlBuilder(string url)
         {
             this.url = url;
@@ -37,7 +37,7 @@ namespace DiGi.WebAPI.Classes
         /// </summary>
         public UrlBuilder AddParameter(string name, string? value)
         {
-            if(name is null)
+            if (name is null)
             {
                 return this;
             }
@@ -65,6 +65,7 @@ namespace DiGi.WebAPI.Classes
         {
             return AddParameter(name, value.ToString());
         }
+
         /// <summary>
         /// Builds the final URL string.
         /// </summary>
@@ -86,19 +87,19 @@ namespace DiGi.WebAPI.Classes
         {
             value = default;
 
-            if(parameterName is null)
+            if (parameterName is null)
             {
                 return false;
             }
 
-            if(!dictionary.TryGetValue(parameterName, out string? @string))
+            if (!dictionary.TryGetValue(parameterName, out string? @string))
             {
                 return false;
             }
 
             @string = WebUtility.UrlDecode(@string);
 
-            if(!Core.Query.TryConvert(@string, out value))
+            if (!Core.Query.TryConvert(@string, out value))
             {
                 return false;
             }

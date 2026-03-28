@@ -2,7 +2,7 @@
 
 namespace DiGi.WebAPI.Interfaces
 {
-    public interface IWebAPIGuidObject: IGuidObject, IWebAPISerializableObject
+    public interface IWebAPIGuidObject : IGuidObject, IWebAPISerializableObject
     {
     }
 }

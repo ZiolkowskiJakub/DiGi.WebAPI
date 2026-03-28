@@ -7,16 +7,16 @@ namespace DiGi.WebAPI
     {
         public static UrlBuilder? UrlBuilder(this string url)
         {
-            if(string.IsNullOrWhiteSpace(url))
+            if (string.IsNullOrWhiteSpace(url))
             {
                 return null;
             }
 
             string[] parts = url.Split('?');
-            
+
             string baseUrl = parts[0];
-            
-            UrlBuilder builder = new (baseUrl);
+
+            UrlBuilder builder = new(baseUrl);
 
             if (parts.Length > 1)
             {

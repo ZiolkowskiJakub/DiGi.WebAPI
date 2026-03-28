@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.Json.Nodes;
 using System.Text.Json.Serialization;
 
@@ -10,23 +8,20 @@ namespace DiGi.WebAPI.Classes
     public sealed class SecurityKeyManager : Core.Classes.SerializableObject
     {
         [JsonIgnore]
-        Dictionary<Guid, SecurityKey> securityKeys = [];
+        private Dictionary<Guid, SecurityKey> securityKeys = [];
 
         public SecurityKeyManager()
         {
-
         }
 
         public SecurityKeyManager(SecurityKeyManager securityKeyManager)
-            :base(securityKeyManager)
+            : base(securityKeyManager)
         {
-
         }
 
         public SecurityKeyManager(JsonObject? jsonObject)
             : base(jsonObject)
         {
-
         }
 
         [JsonInclude, JsonPropertyName("SecurityKeys")]
@@ -55,7 +50,7 @@ namespace DiGi.WebAPI.Classes
 
         public bool Add(SecurityKey? securityKey)
         {
-            if(securityKey is null)
+            if (securityKey is null)
             {
                 return false;
             }

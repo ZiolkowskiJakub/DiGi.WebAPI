@@ -22,16 +22,16 @@ namespace DiGi.WebAPI.Classes
         public SecurityKey(string? key)
             : this()
         {
-            if(key != null)
+            if (key != null)
             {
                 Key = key;
             }
         }
 
         public SecurityKey(SecurityKey? securityKey)
-            :base(securityKey)
+            : base(securityKey)
         {
-            if(securityKey != null)
+            if (securityKey != null)
             {
                 Key = securityKey.Key;
                 CreatedAt = securityKey.CreatedAt;
@@ -41,7 +41,6 @@ namespace DiGi.WebAPI.Classes
         public SecurityKey(JsonObject? jsonObject)
             : base(jsonObject)
         {
-
         }
 
         public byte[] GetBytes()

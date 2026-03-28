@@ -7,12 +7,12 @@ namespace DiGi.WebAPI
         public static string? Path<TControllerBase>(string? methodName) where TControllerBase : ControllerBase
         {
             string? controllerRoute = Route<TControllerBase>();
-            if(string.IsNullOrWhiteSpace(controllerRoute))
+            if (string.IsNullOrWhiteSpace(controllerRoute))
             {
                 return null;
             }
-            
-            if(string.IsNullOrWhiteSpace(methodName))
+
+            if (string.IsNullOrWhiteSpace(methodName))
             {
                 return controllerRoute;
             }
