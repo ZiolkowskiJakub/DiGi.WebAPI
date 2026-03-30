@@ -22,13 +22,19 @@ namespace DiGi.WebAPI
 
             Type type = typeof(T);
 
+            Serilog.Modify.Log("Response value type: {TypeName}", type.Name);
+
             if (type == typeof(string))
             {
+                Serilog.Modify.Log("Converting string");
+
                 string content = await httpContent.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
                 return new PostResponse<T?>(true, true, (T)(object)content);
             }
             else if (type.IsPrimitive)
             {
+                Serilog.Modify.Log("Converting primitive");
+
                 string content = await httpContent.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
 
                 if (!Core.Query.TryConvert(content, out T? result))
@@ -40,6 +46,8 @@ namespace DiGi.WebAPI
             }
             else if (typeof(Core.Interfaces.ISerializableObject).IsAssignableFrom(type))
             {
+                Serilog.Modify.Log("Converting SerializableObject");
+
                 string json = await httpContent.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
                 Core.Interfaces.ISerializableObject? serializableObject = Core.Convert.ToDiGi<Core.Interfaces.ISerializableObject>(json)?.FirstOrDefault();
                 if (serializableObject is T result)
@@ -51,6 +59,8 @@ namespace DiGi.WebAPI
             }
             else if (typeof(IEnumerable).IsAssignableFrom(type))
             {
+                Serilog.Modify.Log("Converting enumerable");
+
                 Type[] genericTypes = type.GetGenericArguments();
                 if (genericTypes != null && genericTypes.Length == 1)
                 {
@@ -85,6 +95,8 @@ namespace DiGi.WebAPI
 
             try
             {
+                Serilog.Modify.Log("Converting from directly json");
+
                 T? result = await httpContent.ReadFromJsonAsync<T>(new JsonSerializerOptions { PropertyNameCaseInsensitive = true }, cancellationToken).ConfigureAwait(false);
                 return new PostResponse<T?>(true, true, result);
             }

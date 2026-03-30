@@ -15,8 +15,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Serilog.Sinks.File" Version="7.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Reference Include="DiGi.Core">
       <HintPath>..\..\DiGi.Core\bin\DiGi.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DiGi.Serilog">
+      <HintPath>..\..\DiGi.Serilog\bin\DiGi.Serilog.dll</HintPath>
     </Reference>
   </ItemGroup>
 
