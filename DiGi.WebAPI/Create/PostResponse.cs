@@ -77,7 +77,7 @@ namespace DiGi.WebAPI
                             {
                                 foreach (Core.Interfaces.ISerializableObject serializableObject in serializableObjects)
                                 {
-                                    if (serializableObject is T)
+                                    if (genericType.IsAssignableFrom(serializableObject.GetType()))
                                     {
                                         list.Add(serializableObject);
                                     }
