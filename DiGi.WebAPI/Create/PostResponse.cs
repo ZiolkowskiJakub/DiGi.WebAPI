@@ -13,6 +13,13 @@ namespace DiGi.WebAPI
 {
     public static partial class Create
     {
+        /// <summary>
+        /// Deserializes HTTP response content into the specified type with intelligent type detection.
+        /// </summary>
+        /// <typeparam name="T">The target type to deserialize into.</typeparam>
+        /// <param name="httpContent">The HTTP content to deserialize.</param>
+        /// <param name="cancellationToken">A token to cancel the operation.</param>
+        /// <returns>A <see cref="PostResponse{T}"/> containing the deserialized result.</returns>
         public static async Task<PostResponse<T?>> PostResponse<T>(this HttpContent httpContent, CancellationToken cancellationToken = default)
         {
             if (httpContent is null)

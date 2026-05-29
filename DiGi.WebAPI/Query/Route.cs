@@ -7,6 +7,11 @@ namespace DiGi.WebAPI
 {
     public static partial class Query
     {
+        /// <summary>
+        /// Retrieves the route template from the controller base type.
+        /// </summary>
+        /// <typeparam name="TControllerBase">The type of the controller base.</typeparam>
+        /// <returns>The route template string, or null if no route is configured.</returns>
         public static string? Route<TControllerBase>() where TControllerBase : ControllerBase
         {
             Type type = typeof(TControllerBase);
@@ -30,6 +35,12 @@ namespace DiGi.WebAPI
             return result;
         }
 
+        /// <summary>
+        /// Retrieves the route template for a specific method on the controller.
+        /// </summary>
+        /// <typeparam name="TControllerBase">The type of the controller base.</typeparam>
+        /// <param name="methodName">The name of the method to retrieve the route for.</param>
+        /// <returns>The method route template, or empty string if no route is found.</returns>
         public static string? Route<TControllerBase>(string methodName) where TControllerBase : ControllerBase
         {
             Type controllerType = typeof(TControllerBase);

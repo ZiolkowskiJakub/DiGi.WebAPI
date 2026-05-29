@@ -5,6 +5,11 @@ namespace DiGi.WebAPI
 {
     public static partial class Create
     {
+        /// <summary>
+        /// Parses a URL string and creates a <see cref="UrlBuilder"/> with the base URL and query parameters.
+        /// </summary>
+        /// <param name="url">The URL string to parse.</param>
+        /// <returns>A <see cref="UrlBuilder"/> instance, or null if the URL is null or whitespace.</returns>
         public static UrlBuilder? UrlBuilder(this string url)
         {
             if (string.IsNullOrWhiteSpace(url))

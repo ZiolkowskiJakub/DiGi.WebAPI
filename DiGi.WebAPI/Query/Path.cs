@@ -4,6 +4,12 @@ namespace DiGi.WebAPI
 {
     public static partial class Query
     {
+        /// <summary>
+        /// Combines the controller route and method route into a full path.
+        /// </summary>
+        /// <typeparam name="TControllerBase">The type of the controller base.</typeparam>
+        /// <param name="methodName">The name of the method to include in the path.</param>
+        /// <returns>The combined route path, or null if the controller route is not available.</returns>
         public static string? Path<TControllerBase>(string? methodName) where TControllerBase : ControllerBase
         {
             string? controllerRoute = Route<TControllerBase>();

@@ -8,6 +8,14 @@ namespace DiGi.WebAPI
 {
     public static partial class Modify
     {
+        /// <summary>
+        /// Performs an HTTP POST operation without requesting the response result.
+        /// </summary>
+        /// <param name="httpClient">The HTTP client to use for the request.</param>
+        /// <param name="requestUri">The URI to send the request to.</param>
+        /// <param name="httpContent">The HTTP content to send in the request body.</param>
+        /// <param name="postOptions">Optional configuration options for the POST operation.</param>
+        /// <returns>A <see cref="PostResponse"/> indicating the success or failure of the operation.</returns>
         public static async Task<PostResponse> PostAsync(this HttpClient httpClient, string? requestUri, HttpContent? httpContent, PostOptions? postOptions = null)
         {
             PostOptions postOptions_Temp = postOptions is null ? new PostOptions() : new PostOptions(postOptions);
@@ -20,6 +28,15 @@ namespace DiGi.WebAPI
             return new PostResponse(postResponse.Succeeded);
         }
 
+        /// <summary>
+        /// Performs an HTTP POST operation and deserializes the response into the specified type.
+        /// </summary>
+        /// <typeparam name="T">The type of the response result.</typeparam>
+        /// <param name="httpClient">The HTTP client to use for the request.</param>
+        /// <param name="requestUri">The URI to send the request to.</param>
+        /// <param name="httpContent">The HTTP content to send in the request body.</param>
+        /// <param name="postOptions">Optional configuration options for the POST operation.</param>
+        /// <returns>A <see cref="PostResponse{T}"/> containing the deserialized result or failure information.</returns>
         public static async Task<PostResponse<T?>> PostAsync<T>(this HttpClient httpClient, string? requestUri, HttpContent? httpContent, PostOptions? postOptions = null)
         {
             if (httpClient is null || string.IsNullOrWhiteSpace(requestUri))
