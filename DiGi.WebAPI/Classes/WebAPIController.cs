@@ -8,6 +8,7 @@ namespace DiGi.WebAPI.Classes
     /// </summary>
     [ApiExplorerSettings(IgnoreApi = true)]
     [Produces("application/json")]
+    [Consumes("application/json")]
     public abstract class WebAPIController : ControllerBase, IWebAPIController
     {
     }
