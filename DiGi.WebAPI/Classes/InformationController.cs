@@ -34,13 +34,13 @@ namespace DiGi.WebAPI.Classes
         /// Retrieves a list of all registered controllers in the application.
         /// </summary>
         /// <returns>A JSON string containing controller information, or an empty response if no controllers are found.</returns>
-        [HttpGet("controllers")]
+        [HttpGet("controllers", Name = $"{nameof(InformationController)}_{nameof(GetControllersAsync)}")]
         [ProducesResponseType(typeof(List<ControllerInformation>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> GetControllersAsync()
         {
             ControllerFeature controllerFeature = new ();
-            this.applicationPartManager.PopulateFeature(controllerFeature);
+            applicationPartManager.PopulateFeature(controllerFeature);
 
             IList<TypeInfo>? typeInfos = controllerFeature?.Controllers;
             if (typeInfos is null)
@@ -71,7 +71,7 @@ namespace DiGi.WebAPI.Classes
         /// Retrieves the version of the executing assembly.
         /// </summary>
         /// <returns>The assembly version as a string, or an empty response if unavailable.</returns>
-        [HttpGet("version")]
+        [HttpGet("version", Name = $"{nameof(InformationController)}_{nameof(GetVersionAsync)}")]
         [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> GetVersionAsync()
