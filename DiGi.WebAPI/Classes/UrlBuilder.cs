@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 
@@ -13,6 +13,7 @@ namespace DiGi.WebAPI.Classes
         /// Stores the query parameters to be appended to the URL.
         /// </summary>
         private readonly Dictionary<string, string> dictionary = [];
+        
         /// <summary>
         /// The base URL before query parameters are added.
         /// </summary>
@@ -56,6 +57,9 @@ namespace DiGi.WebAPI.Classes
         /// <summary>
         /// Adds a query parameter with automatic URL encoding.
         /// </summary>
+        /// <param name="name">The name of the query parameter.</param>
+        /// <param name="value">The value of the query parameter.</param>
+        /// <returns>The current UrlBuilder instance.</returns>
         public UrlBuilder AddParameter(string name, string? value)
         {
             if (name is null)
@@ -108,6 +112,7 @@ namespace DiGi.WebAPI.Classes
         /// <summary>
         /// Builds the final URL string.
         /// </summary>
+        /// <returns>The built URL string with query parameters.</returns>
         public string Build()
         {
             if (dictionary.Count == 0)
