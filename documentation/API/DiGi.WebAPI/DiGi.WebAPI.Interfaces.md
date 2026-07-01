@@ -1,0 +1,95 @@
+#### [DiGi\.WebAPI](index.md 'index')
+
+## DiGi\.WebAPI\.Interfaces Namespace
+### Interfaces
+
+<a name='DiGi.WebAPI.Interfaces.IWebAPIController'></a>
+
+## IWebAPIController Interface
+
+Defines the base contract for all WebAPI controllers\.
+
+```csharp
+public interface IWebAPIController : DiGi.WebAPI.Interfaces.IWebAPIObject, DiGi.Core.Interfaces.IObject
+```
+
+Derived  
+↳ [WebAPIController](DiGi.WebAPI.Classes.md#DiGi.WebAPI.Classes.WebAPIController 'DiGi\.WebAPI\.Classes\.WebAPIController')
+
+Implements [IWebAPIObject](DiGi.WebAPI.Interfaces.md#DiGi.WebAPI.Interfaces.IWebAPIObject 'DiGi\.WebAPI\.Interfaces\.IWebAPIObject'), [DiGi\.Core\.Interfaces\.IObject](https://learn.microsoft.com/en-us/dotnet/api/digi.core.interfaces.iobject 'DiGi\.Core\.Interfaces\.IObject')
+
+<a name='DiGi.WebAPI.Interfaces.IWebAPIDocumentFilter'></a>
+
+## IWebAPIDocumentFilter Interface
+
+Defines a filter that can be used to modify the generated Swagger document\.
+
+```csharp
+public interface IWebAPIDocumentFilter : Swashbuckle.AspNetCore.SwaggerGen.IDocumentFilter
+```
+
+Implements [Swashbuckle\.AspNetCore\.SwaggerGen\.IDocumentFilter](https://learn.microsoft.com/en-us/dotnet/api/swashbuckle.aspnetcore.swaggergen.idocumentfilter 'Swashbuckle\.AspNetCore\.SwaggerGen\.IDocumentFilter')
+
+<a name='DiGi.WebAPI.Interfaces.IWebAPIGuidObject'></a>
+
+## IWebAPIGuidObject Interface
+
+Defines the contract for WebAPI objects that support GUID identification and serialization\.
+
+```csharp
+public interface IWebAPIGuidObject : DiGi.Core.Interfaces.IGuidObject, DiGi.Core.Interfaces.IUniqueObject, DiGi.Core.Interfaces.ISerializableObject, DiGi.Core.Interfaces.ICloneableObject<DiGi.Core.Interfaces.ISerializableObject>, DiGi.Core.Interfaces.ICloneableObject, DiGi.Core.Interfaces.IObject, DiGi.WebAPI.Interfaces.IWebAPISerializableObject, DiGi.WebAPI.Interfaces.IWebAPIObject
+```
+
+Derived  
+↳ [SecurityKey](DiGi.WebAPI.Classes.md#DiGi.WebAPI.Classes.SecurityKey 'DiGi\.WebAPI\.Classes\.SecurityKey')
+
+Implements [DiGi\.Core\.Interfaces\.IGuidObject](https://learn.microsoft.com/en-us/dotnet/api/digi.core.interfaces.iguidobject 'DiGi\.Core\.Interfaces\.IGuidObject'), [DiGi\.Core\.Interfaces\.IUniqueObject](https://learn.microsoft.com/en-us/dotnet/api/digi.core.interfaces.iuniqueobject 'DiGi\.Core\.Interfaces\.IUniqueObject'), [DiGi\.Core\.Interfaces\.ISerializableObject](https://learn.microsoft.com/en-us/dotnet/api/digi.core.interfaces.iserializableobject 'DiGi\.Core\.Interfaces\.ISerializableObject'), [DiGi\.Core\.Interfaces\.ICloneableObject&lt;](https://learn.microsoft.com/en-us/dotnet/api/digi.core.interfaces.icloneableobject-1 'DiGi\.Core\.Interfaces\.ICloneableObject\`1')[DiGi\.Core\.Interfaces\.ISerializableObject](https://learn.microsoft.com/en-us/dotnet/api/digi.core.interfaces.iserializableobject 'DiGi\.Core\.Interfaces\.ISerializableObject')[&gt;](https://learn.microsoft.com/en-us/dotnet/api/digi.core.interfaces.icloneableobject-1 'DiGi\.Core\.Interfaces\.ICloneableObject\`1'), [DiGi\.Core\.Interfaces\.ICloneableObject](https://learn.microsoft.com/en-us/dotnet/api/digi.core.interfaces.icloneableobject 'DiGi\.Core\.Interfaces\.ICloneableObject'), [DiGi\.Core\.Interfaces\.IObject](https://learn.microsoft.com/en-us/dotnet/api/digi.core.interfaces.iobject 'DiGi\.Core\.Interfaces\.IObject'), [IWebAPISerializableObject](DiGi.WebAPI.Interfaces.md#DiGi.WebAPI.Interfaces.IWebAPISerializableObject 'DiGi\.WebAPI\.Interfaces\.IWebAPISerializableObject'), [IWebAPIObject](DiGi.WebAPI.Interfaces.md#DiGi.WebAPI.Interfaces.IWebAPIObject 'DiGi\.WebAPI\.Interfaces\.IWebAPIObject')
+
+<a name='DiGi.WebAPI.Interfaces.IWebAPIObject'></a>
+
+## IWebAPIObject Interface
+
+Defines the base contract for all WebAPI serializable objects\.
+
+```csharp
+public interface IWebAPIObject : DiGi.Core.Interfaces.IObject
+```
+
+Derived  
+↳ [ControllerInformation](DiGi.WebAPI.Classes.md#DiGi.WebAPI.Classes.ControllerInformation 'DiGi\.WebAPI\.Classes\.ControllerInformation')  
+↳ [SecurityKey](DiGi.WebAPI.Classes.md#DiGi.WebAPI.Classes.SecurityKey 'DiGi\.WebAPI\.Classes\.SecurityKey')  
+↳ [WebAPIController](DiGi.WebAPI.Classes.md#DiGi.WebAPI.Classes.WebAPIController 'DiGi\.WebAPI\.Classes\.WebAPIController')  
+↳ [IWebAPIController](DiGi.WebAPI.Interfaces.md#DiGi.WebAPI.Interfaces.IWebAPIController 'DiGi\.WebAPI\.Interfaces\.IWebAPIController')  
+↳ [IWebAPIGuidObject](DiGi.WebAPI.Interfaces.md#DiGi.WebAPI.Interfaces.IWebAPIGuidObject 'DiGi\.WebAPI\.Interfaces\.IWebAPIGuidObject')  
+↳ [IWebAPISerializableObject](DiGi.WebAPI.Interfaces.md#DiGi.WebAPI.Interfaces.IWebAPISerializableObject 'DiGi\.WebAPI\.Interfaces\.IWebAPISerializableObject')
+
+Implements [DiGi\.Core\.Interfaces\.IObject](https://learn.microsoft.com/en-us/dotnet/api/digi.core.interfaces.iobject 'DiGi\.Core\.Interfaces\.IObject')
+
+<a name='DiGi.WebAPI.Interfaces.IWebAPISchemaFilter'></a>
+
+## IWebAPISchemaFilter Interface
+
+Defines a filter for modifying the OpenAPI schema generated by Swagger\.
+
+```csharp
+public interface IWebAPISchemaFilter : Swashbuckle.AspNetCore.SwaggerGen.ISchemaFilter
+```
+
+Implements [Swashbuckle\.AspNetCore\.SwaggerGen\.ISchemaFilter](https://learn.microsoft.com/en-us/dotnet/api/swashbuckle.aspnetcore.swaggergen.ischemafilter 'Swashbuckle\.AspNetCore\.SwaggerGen\.ISchemaFilter')
+
+<a name='DiGi.WebAPI.Interfaces.IWebAPISerializableObject'></a>
+
+## IWebAPISerializableObject Interface
+
+Defines the contract for WebAPI objects that support serialization\.
+
+```csharp
+public interface IWebAPISerializableObject : DiGi.WebAPI.Interfaces.IWebAPIObject, DiGi.Core.Interfaces.IObject, DiGi.Core.Interfaces.ISerializableObject, DiGi.Core.Interfaces.ICloneableObject<DiGi.Core.Interfaces.ISerializableObject>, DiGi.Core.Interfaces.ICloneableObject
+```
+
+Derived  
+↳ [ControllerInformation](DiGi.WebAPI.Classes.md#DiGi.WebAPI.Classes.ControllerInformation 'DiGi\.WebAPI\.Classes\.ControllerInformation')  
+↳ [SecurityKey](DiGi.WebAPI.Classes.md#DiGi.WebAPI.Classes.SecurityKey 'DiGi\.WebAPI\.Classes\.SecurityKey')  
+↳ [IWebAPIGuidObject](DiGi.WebAPI.Interfaces.md#DiGi.WebAPI.Interfaces.IWebAPIGuidObject 'DiGi\.WebAPI\.Interfaces\.IWebAPIGuidObject')
+
+Implements [IWebAPIObject](DiGi.WebAPI.Interfaces.md#DiGi.WebAPI.Interfaces.IWebAPIObject 'DiGi\.WebAPI\.Interfaces\.IWebAPIObject'), [DiGi\.Core\.Interfaces\.IObject](https://learn.microsoft.com/en-us/dotnet/api/digi.core.interfaces.iobject 'DiGi\.Core\.Interfaces\.IObject'), [DiGi\.Core\.Interfaces\.ISerializableObject](https://learn.microsoft.com/en-us/dotnet/api/digi.core.interfaces.iserializableobject 'DiGi\.Core\.Interfaces\.ISerializableObject'), [DiGi\.Core\.Interfaces\.ICloneableObject&lt;](https://learn.microsoft.com/en-us/dotnet/api/digi.core.interfaces.icloneableobject-1 'DiGi\.Core\.Interfaces\.ICloneableObject\`1')[DiGi\.Core\.Interfaces\.ISerializableObject](https://learn.microsoft.com/en-us/dotnet/api/digi.core.interfaces.iserializableobject 'DiGi\.Core\.Interfaces\.ISerializableObject')[&gt;](https://learn.microsoft.com/en-us/dotnet/api/digi.core.interfaces.icloneableobject-1 'DiGi\.Core\.Interfaces\.ICloneableObject\`1'), [DiGi\.Core\.Interfaces\.ICloneableObject](https://learn.microsoft.com/en-us/dotnet/api/digi.core.interfaces.icloneableobject 'DiGi\.Core\.Interfaces\.ICloneableObject')
