@@ -197,6 +197,48 @@ public static class Query
 Inheritance [System\.Object](https://learn.microsoft.com/en-us/dotnet/api/system.object 'System\.Object') → Query
 ### Methods
 
+<a name='DiGi.WebAPI.Query.GetAsync_T_(thisSystem.Net.Http.HttpClient,string,DiGi.WebAPI.Classes.PostOptions)'></a>
+
+## Query\.GetAsync\<T\>\(this HttpClient, string, PostOptions\) Method
+
+Performs an HTTP GET operation and deserializes the response into the specified type\.
+
+[PostOptions](DiGi.WebAPI.Classes.md#DiGi.WebAPI.Classes.PostOptions 'DiGi\.WebAPI\.Classes\.PostOptions') and [PostResponse&lt;T&gt;](DiGi.WebAPI.Classes.md#DiGi.WebAPI.Classes.PostResponse_T_ 'DiGi\.WebAPI\.Classes\.PostResponse\<T\>') are shared by the GET and POST helpers - [Delay](DiGi.WebAPI.Classes.md#DiGi.WebAPI.Classes.PostOptions.Delay 'DiGi\.WebAPI\.Classes\.PostOptions\.Delay') bounds the request and [RequestResult](DiGi.WebAPI.Classes.md#DiGi.WebAPI.Classes.PostOptions.RequestResult 'DiGi\.WebAPI\.Classes\.PostOptions\.RequestResult') controls whether the response body is materialised.
+
+```csharp
+public static System.Threading.Tasks.Task<DiGi.WebAPI.Classes.PostResponse<T?>> GetAsync<T>(this System.Net.Http.HttpClient? httpClient, string? requestUri, DiGi.WebAPI.Classes.PostOptions? postOptions=null);
+```
+#### Type parameters
+
+<a name='DiGi.WebAPI.Query.GetAsync_T_(thisSystem.Net.Http.HttpClient,string,DiGi.WebAPI.Classes.PostOptions).T'></a>
+
+`T`
+
+The type of the response result\.
+#### Parameters
+
+<a name='DiGi.WebAPI.Query.GetAsync_T_(thisSystem.Net.Http.HttpClient,string,DiGi.WebAPI.Classes.PostOptions).httpClient'></a>
+
+`httpClient` [System\.Net\.Http\.HttpClient](https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httpclient 'System\.Net\.Http\.HttpClient')
+
+The HTTP client to use for the request\.
+
+<a name='DiGi.WebAPI.Query.GetAsync_T_(thisSystem.Net.Http.HttpClient,string,DiGi.WebAPI.Classes.PostOptions).requestUri'></a>
+
+`requestUri` [System\.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System\.String')
+
+The URI to send the request to\.
+
+<a name='DiGi.WebAPI.Query.GetAsync_T_(thisSystem.Net.Http.HttpClient,string,DiGi.WebAPI.Classes.PostOptions).postOptions'></a>
+
+`postOptions` [PostOptions](DiGi.WebAPI.Classes.md#DiGi.WebAPI.Classes.PostOptions 'DiGi\.WebAPI\.Classes\.PostOptions')
+
+Optional configuration options for the GET operation\.
+
+#### Returns
+[System\.Threading\.Tasks\.Task&lt;](https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task-1 'System\.Threading\.Tasks\.Task\`1')[DiGi\.WebAPI\.Classes\.PostResponse&lt;](DiGi.WebAPI.Classes.md#DiGi.WebAPI.Classes.PostResponse_T_ 'DiGi\.WebAPI\.Classes\.PostResponse\<T\>')[T](DiGi.WebAPI.md#DiGi.WebAPI.Query.GetAsync_T_(thisSystem.Net.Http.HttpClient,string,DiGi.WebAPI.Classes.PostOptions).T 'DiGi\.WebAPI\.Query\.GetAsync\<T\>\(this System\.Net\.Http\.HttpClient, string, DiGi\.WebAPI\.Classes\.PostOptions\)\.T')[&gt;](DiGi.WebAPI.Classes.md#DiGi.WebAPI.Classes.PostResponse_T_ 'DiGi\.WebAPI\.Classes\.PostResponse\<T\>')[&gt;](https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task-1 'System\.Threading\.Tasks\.Task\`1')  
+A [PostResponse&lt;T&gt;](DiGi.WebAPI.Classes.md#DiGi.WebAPI.Classes.PostResponse_T_ 'DiGi\.WebAPI\.Classes\.PostResponse\<T\>') containing the deserialized result or failure information\.
+
 <a name='DiGi.WebAPI.Query.Path_TControllerBase_(string)'></a>
 
 ## Query\.Path\<TControllerBase\>\(string\) Method
