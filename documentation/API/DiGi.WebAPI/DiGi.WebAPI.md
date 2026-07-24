@@ -101,6 +101,47 @@ public static class Modify
 Inheritance [System\.Object](https://learn.microsoft.com/en-us/dotnet/api/system.object 'System\.Object') → Modify
 ### Methods
 
+<a name='DiGi.WebAPI.Modify.PostAsync(thisSystem.Net.Http.HttpClient,string,System.Func_System.Threading.Tasks.Task_System.Net.Http.HttpContent__,DiGi.WebAPI.Classes.PostOptions)'></a>
+
+## Modify\.PostAsync\(this HttpClient, string, Func\<Task\<HttpContent\>\>, PostOptions\) Method
+
+Performs an HTTP POST operation without requesting the response result, rebuilding the request body for every attempt\.
+
+Prefer this overload whenever retrying matters - see the factory overload of [PostAsync&lt;T&gt;\(this HttpClient, string, Func&lt;Task&lt;HttpContent&gt;&gt;, PostOptions\)](DiGi.WebAPI.md#DiGi.WebAPI.Modify.PostAsync_T_(thisSystem.Net.Http.HttpClient,string,System.Func_System.Threading.Tasks.Task_System.Net.Http.HttpContent__,DiGi.WebAPI.Classes.PostOptions) 'DiGi\.WebAPI\.Modify\.PostAsync\<T\>\(this System\.Net\.Http\.HttpClient, string, System\.Func\<System\.Threading\.Tasks\.Task\<System\.Net\.Http\.HttpContent\>\>, DiGi\.WebAPI\.Classes\.PostOptions\)') for why the body cannot be reused.
+
+```csharp
+public static System.Threading.Tasks.Task<DiGi.WebAPI.Classes.PostResponse> PostAsync(this System.Net.Http.HttpClient httpClient, string? requestUri, System.Func<System.Threading.Tasks.Task<System.Net.Http.HttpContent?>>? httpContentFactory, DiGi.WebAPI.Classes.PostOptions? postOptions=null);
+```
+#### Parameters
+
+<a name='DiGi.WebAPI.Modify.PostAsync(thisSystem.Net.Http.HttpClient,string,System.Func_System.Threading.Tasks.Task_System.Net.Http.HttpContent__,DiGi.WebAPI.Classes.PostOptions).httpClient'></a>
+
+`httpClient` [System\.Net\.Http\.HttpClient](https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httpclient 'System\.Net\.Http\.HttpClient')
+
+The HTTP client to use for the request\.
+
+<a name='DiGi.WebAPI.Modify.PostAsync(thisSystem.Net.Http.HttpClient,string,System.Func_System.Threading.Tasks.Task_System.Net.Http.HttpContent__,DiGi.WebAPI.Classes.PostOptions).requestUri'></a>
+
+`requestUri` [System\.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System\.String')
+
+The URI to send the request to\.
+
+<a name='DiGi.WebAPI.Modify.PostAsync(thisSystem.Net.Http.HttpClient,string,System.Func_System.Threading.Tasks.Task_System.Net.Http.HttpContent__,DiGi.WebAPI.Classes.PostOptions).httpContentFactory'></a>
+
+`httpContentFactory` [System\.Func&lt;](https://learn.microsoft.com/en-us/dotnet/api/system.func-1 'System\.Func\`1')[System\.Threading\.Tasks\.Task&lt;](https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task-1 'System\.Threading\.Tasks\.Task\`1')[System\.Net\.Http\.HttpContent](https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httpcontent 'System\.Net\.Http\.HttpContent')[&gt;](https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task-1 'System\.Threading\.Tasks\.Task\`1')[&gt;](https://learn.microsoft.com/en-us/dotnet/api/system.func-1 'System\.Func\`1')
+
+Builds the request body\. Invoked once per attempt\.
+
+<a name='DiGi.WebAPI.Modify.PostAsync(thisSystem.Net.Http.HttpClient,string,System.Func_System.Threading.Tasks.Task_System.Net.Http.HttpContent__,DiGi.WebAPI.Classes.PostOptions).postOptions'></a>
+
+`postOptions` [PostOptions](DiGi.WebAPI.Classes.md#DiGi.WebAPI.Classes.PostOptions 'DiGi\.WebAPI\.Classes\.PostOptions')
+
+Optional configuration options for the POST operation\.
+
+#### Returns
+[System\.Threading\.Tasks\.Task&lt;](https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task-1 'System\.Threading\.Tasks\.Task\`1')[PostResponse](DiGi.WebAPI.Classes.md#DiGi.WebAPI.Classes.PostResponse 'DiGi\.WebAPI\.Classes\.PostResponse')[&gt;](https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task-1 'System\.Threading\.Tasks\.Task\`1')  
+A [PostResponse](DiGi.WebAPI.Classes.md#DiGi.WebAPI.Classes.PostResponse 'DiGi\.WebAPI\.Classes\.PostResponse') indicating the success or failure of the operation\.
+
 <a name='DiGi.WebAPI.Modify.PostAsync(thisSystem.Net.Http.HttpClient,string,System.Net.Http.HttpContent,DiGi.WebAPI.Classes.PostOptions)'></a>
 
 ## Modify\.PostAsync\(this HttpClient, string, HttpContent, PostOptions\) Method
@@ -140,11 +181,63 @@ Optional configuration options for the POST operation\.
 [System\.Threading\.Tasks\.Task&lt;](https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task-1 'System\.Threading\.Tasks\.Task\`1')[PostResponse](DiGi.WebAPI.Classes.md#DiGi.WebAPI.Classes.PostResponse 'DiGi\.WebAPI\.Classes\.PostResponse')[&gt;](https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task-1 'System\.Threading\.Tasks\.Task\`1')  
 A [PostResponse](DiGi.WebAPI.Classes.md#DiGi.WebAPI.Classes.PostResponse 'DiGi\.WebAPI\.Classes\.PostResponse') indicating the success or failure of the operation\.
 
+<a name='DiGi.WebAPI.Modify.PostAsync_T_(thisSystem.Net.Http.HttpClient,string,System.Func_System.Threading.Tasks.Task_System.Net.Http.HttpContent__,DiGi.WebAPI.Classes.PostOptions)'></a>
+
+## Modify\.PostAsync\<T\>\(this HttpClient, string, Func\<Task\<HttpContent\>\>, PostOptions\) Method
+
+Performs an HTTP POST operation and deserializes the response into the specified type, retrying transient failures\.
+
+The body is built by [httpContentFactory](DiGi.WebAPI.md#DiGi.WebAPI.Modify.PostAsync_T_(thisSystem.Net.Http.HttpClient,string,System.Func_System.Threading.Tasks.Task_System.Net.Http.HttpContent__,DiGi.WebAPI.Classes.PostOptions).httpContentFactory 'DiGi\.WebAPI\.Modify\.PostAsync\<T\>\(this System\.Net\.Http\.HttpClient, string, System\.Func\<System\.Threading\.Tasks\.Task\<System\.Net\.Http\.HttpContent\>\>, DiGi\.WebAPI\.Classes\.PostOptions\)\.httpContentFactory') once per attempt. A factory is required rather than an [System\.Net\.Http\.HttpContent](https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httpcontent 'System\.Net\.Http\.HttpContent') instance because sending consumes and disposes the content - a retry that reused it would post an empty body.
+
+Only transient responses are retried (see [IsTransient\(this HttpStatusCode\)](DiGi.WebAPI.md#DiGi.WebAPI.Query.IsTransient(thisSystem.Net.HttpStatusCode) 'DiGi\.WebAPI\.Query\.IsTransient\(this System\.Net\.HttpStatusCode\)')), with the wait doubling after each attempt. Anything else throws on the first attempt, as does an exhausted retry, so a caller's failure handling is unchanged.
+
+```csharp
+public static System.Threading.Tasks.Task<DiGi.WebAPI.Classes.PostResponse<T?>> PostAsync<T>(this System.Net.Http.HttpClient httpClient, string? requestUri, System.Func<System.Threading.Tasks.Task<System.Net.Http.HttpContent?>>? httpContentFactory, DiGi.WebAPI.Classes.PostOptions? postOptions=null);
+```
+#### Type parameters
+
+<a name='DiGi.WebAPI.Modify.PostAsync_T_(thisSystem.Net.Http.HttpClient,string,System.Func_System.Threading.Tasks.Task_System.Net.Http.HttpContent__,DiGi.WebAPI.Classes.PostOptions).T'></a>
+
+`T`
+
+The type of the response result\.
+#### Parameters
+
+<a name='DiGi.WebAPI.Modify.PostAsync_T_(thisSystem.Net.Http.HttpClient,string,System.Func_System.Threading.Tasks.Task_System.Net.Http.HttpContent__,DiGi.WebAPI.Classes.PostOptions).httpClient'></a>
+
+`httpClient` [System\.Net\.Http\.HttpClient](https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httpclient 'System\.Net\.Http\.HttpClient')
+
+The HTTP client to use for the request\.
+
+<a name='DiGi.WebAPI.Modify.PostAsync_T_(thisSystem.Net.Http.HttpClient,string,System.Func_System.Threading.Tasks.Task_System.Net.Http.HttpContent__,DiGi.WebAPI.Classes.PostOptions).requestUri'></a>
+
+`requestUri` [System\.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System\.String')
+
+The URI to send the request to\.
+
+<a name='DiGi.WebAPI.Modify.PostAsync_T_(thisSystem.Net.Http.HttpClient,string,System.Func_System.Threading.Tasks.Task_System.Net.Http.HttpContent__,DiGi.WebAPI.Classes.PostOptions).httpContentFactory'></a>
+
+`httpContentFactory` [System\.Func&lt;](https://learn.microsoft.com/en-us/dotnet/api/system.func-1 'System\.Func\`1')[System\.Threading\.Tasks\.Task&lt;](https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task-1 'System\.Threading\.Tasks\.Task\`1')[System\.Net\.Http\.HttpContent](https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httpcontent 'System\.Net\.Http\.HttpContent')[&gt;](https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task-1 'System\.Threading\.Tasks\.Task\`1')[&gt;](https://learn.microsoft.com/en-us/dotnet/api/system.func-1 'System\.Func\`1')
+
+Builds the request body\. Invoked once per attempt; may return null for a bodyless POST\.
+
+<a name='DiGi.WebAPI.Modify.PostAsync_T_(thisSystem.Net.Http.HttpClient,string,System.Func_System.Threading.Tasks.Task_System.Net.Http.HttpContent__,DiGi.WebAPI.Classes.PostOptions).postOptions'></a>
+
+`postOptions` [PostOptions](DiGi.WebAPI.Classes.md#DiGi.WebAPI.Classes.PostOptions 'DiGi\.WebAPI\.Classes\.PostOptions')
+
+Optional configuration options for the POST operation\.
+
+#### Returns
+[System\.Threading\.Tasks\.Task&lt;](https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task-1 'System\.Threading\.Tasks\.Task\`1')[DiGi\.WebAPI\.Classes\.PostResponse&lt;](DiGi.WebAPI.Classes.md#DiGi.WebAPI.Classes.PostResponse_T_ 'DiGi\.WebAPI\.Classes\.PostResponse\<T\>')[T](DiGi.WebAPI.md#DiGi.WebAPI.Modify.PostAsync_T_(thisSystem.Net.Http.HttpClient,string,System.Func_System.Threading.Tasks.Task_System.Net.Http.HttpContent__,DiGi.WebAPI.Classes.PostOptions).T 'DiGi\.WebAPI\.Modify\.PostAsync\<T\>\(this System\.Net\.Http\.HttpClient, string, System\.Func\<System\.Threading\.Tasks\.Task\<System\.Net\.Http\.HttpContent\>\>, DiGi\.WebAPI\.Classes\.PostOptions\)\.T')[&gt;](DiGi.WebAPI.Classes.md#DiGi.WebAPI.Classes.PostResponse_T_ 'DiGi\.WebAPI\.Classes\.PostResponse\<T\>')[&gt;](https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task-1 'System\.Threading\.Tasks\.Task\`1')  
+A [PostResponse&lt;T&gt;](DiGi.WebAPI.Classes.md#DiGi.WebAPI.Classes.PostResponse_T_ 'DiGi\.WebAPI\.Classes\.PostResponse\<T\>') containing the deserialized result or failure information\.
+
 <a name='DiGi.WebAPI.Modify.PostAsync_T_(thisSystem.Net.Http.HttpClient,string,System.Net.Http.HttpContent,DiGi.WebAPI.Classes.PostOptions)'></a>
 
 ## Modify\.PostAsync\<T\>\(this HttpClient, string, HttpContent, PostOptions\) Method
 
 Performs an HTTP POST operation and deserializes the response into the specified type\.
+
+The supplied [httpContent](DiGi.WebAPI.md#DiGi.WebAPI.Modify.PostAsync_T_(thisSystem.Net.Http.HttpClient,string,System.Net.Http.HttpContent,DiGi.WebAPI.Classes.PostOptions).httpContent 'DiGi\.WebAPI\.Modify\.PostAsync\<T\>\(this System\.Net\.Http\.HttpClient, string, System\.Net\.Http\.HttpContent, DiGi\.WebAPI\.Classes\.PostOptions\)\.httpContent') is consumed and disposed by the send, so it cannot be resent. Retrying is therefore disabled for this overload regardless of [RetryCount](DiGi.WebAPI.Classes.md#DiGi.WebAPI.Classes.PostOptions.RetryCount 'DiGi\.WebAPI\.Classes\.PostOptions\.RetryCount'); use the factory overload to get retries.
 
 ```csharp
 public static System.Threading.Tasks.Task<DiGi.WebAPI.Classes.PostResponse<T?>> PostAsync<T>(this System.Net.Http.HttpClient httpClient, string? requestUri, System.Net.Http.HttpContent? httpContent, DiGi.WebAPI.Classes.PostOptions? postOptions=null);
@@ -238,6 +331,31 @@ Optional configuration options for the GET operation\.
 #### Returns
 [System\.Threading\.Tasks\.Task&lt;](https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task-1 'System\.Threading\.Tasks\.Task\`1')[DiGi\.WebAPI\.Classes\.PostResponse&lt;](DiGi.WebAPI.Classes.md#DiGi.WebAPI.Classes.PostResponse_T_ 'DiGi\.WebAPI\.Classes\.PostResponse\<T\>')[T](DiGi.WebAPI.md#DiGi.WebAPI.Query.GetAsync_T_(thisSystem.Net.Http.HttpClient,string,DiGi.WebAPI.Classes.PostOptions).T 'DiGi\.WebAPI\.Query\.GetAsync\<T\>\(this System\.Net\.Http\.HttpClient, string, DiGi\.WebAPI\.Classes\.PostOptions\)\.T')[&gt;](DiGi.WebAPI.Classes.md#DiGi.WebAPI.Classes.PostResponse_T_ 'DiGi\.WebAPI\.Classes\.PostResponse\<T\>')[&gt;](https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task-1 'System\.Threading\.Tasks\.Task\`1')  
 A [PostResponse&lt;T&gt;](DiGi.WebAPI.Classes.md#DiGi.WebAPI.Classes.PostResponse_T_ 'DiGi\.WebAPI\.Classes\.PostResponse\<T\>') containing the deserialized result or failure information\.
+
+<a name='DiGi.WebAPI.Query.IsTransient(thisSystem.Net.HttpStatusCode)'></a>
+
+## Query\.IsTransient\(this HttpStatusCode\) Method
+
+Determines whether a response status represents a transient condition that is worth retrying\.
+
+Transient means the request may well succeed if sent again unchanged: the gateway lost its upstream (502), the service is unavailable or restarting (503), the gateway timed out waiting (504), the server asked the client to retry (408, 429).
+
+Everything else is treated as a genuine fault and fails on the first attempt. In particular [System\.Net\.HttpStatusCode\.InternalServerError](https://learn.microsoft.com/en-us/dotnet/api/system.net.httpstatuscode.internalservererror 'System\.Net\.HttpStatusCode\.InternalServerError') is NOT transient - a 500 from a DiGi controller is an unhandled exception it already logged, and retrying only repeats it.
+
+```csharp
+public static bool IsTransient(this System.Net.HttpStatusCode httpStatusCode);
+```
+#### Parameters
+
+<a name='DiGi.WebAPI.Query.IsTransient(thisSystem.Net.HttpStatusCode).httpStatusCode'></a>
+
+`httpStatusCode` [System\.Net\.HttpStatusCode](https://learn.microsoft.com/en-us/dotnet/api/system.net.httpstatuscode 'System\.Net\.HttpStatusCode')
+
+The status returned by the server\.
+
+#### Returns
+[System\.Boolean](https://learn.microsoft.com/en-us/dotnet/api/system.boolean 'System\.Boolean')  
+True if the request should be retried; otherwise, false\.
 
 <a name='DiGi.WebAPI.Query.Path_TControllerBase_(string)'></a>
 

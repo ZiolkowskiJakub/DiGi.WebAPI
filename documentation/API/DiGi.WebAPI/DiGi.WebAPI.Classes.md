@@ -317,7 +317,7 @@ The [PostOptions](DiGi.WebAPI.Classes.md#DiGi.WebAPI.Classes.PostOptions 'DiGi\.
 Initializes a new instance of the [PostOptions](DiGi.WebAPI.Classes.md#DiGi.WebAPI.Classes.PostOptions 'DiGi\.WebAPI\.Classes\.PostOptions') class from a JSON object\.
 
 ```csharp
-public PostOptions(System.Text.Json.Nodes.JsonObject jsonObject);
+public PostOptions(System.Text.Json.Nodes.JsonObject? jsonObject);
 ```
 #### Parameters
 
@@ -333,6 +333,8 @@ The JSON object to deserialize from\.
 ## PostOptions\.Delay Property
 
 Gets or sets the delay duration for the POST operation\.
+
+This bounds a single attempt, not the whole operation - a retried request gets the full delay again.
 
 ```csharp
 public System.TimeSpan Delay { get; set; }
@@ -353,6 +355,34 @@ public bool RequestResult { get; set; }
 
 #### Property Value
 [System\.Boolean](https://learn.microsoft.com/en-us/dotnet/api/system.boolean 'System\.Boolean')
+
+<a name='DiGi.WebAPI.Classes.PostOptions.RetryCount'></a>
+
+## PostOptions\.RetryCount Property
+
+Gets or sets how many additional attempts are made after a transient failure\. Zero disables retrying\.
+
+Only transient conditions are retried - see [IsTransient\(this HttpStatusCode\)](DiGi.WebAPI.md#DiGi.WebAPI.Query.IsTransient(thisSystem.Net.HttpStatusCode) 'DiGi\.WebAPI\.Query\.IsTransient\(this System\.Net\.HttpStatusCode\)'). A response that indicates a genuine fault, such as 400 or 500, fails on the first attempt.
+
+```csharp
+public int RetryCount { get; set; }
+```
+
+#### Property Value
+[System\.Int32](https://learn.microsoft.com/en-us/dotnet/api/system.int32 'System\.Int32')
+
+<a name='DiGi.WebAPI.Classes.PostOptions.RetryDelay'></a>
+
+## PostOptions\.RetryDelay Property
+
+Gets or sets the wait before the first retry\. The wait doubles after each further attempt\.
+
+```csharp
+public System.TimeSpan RetryDelay { get; set; }
+```
+
+#### Property Value
+[System\.TimeSpan](https://learn.microsoft.com/en-us/dotnet/api/system.timespan 'System\.TimeSpan')
 
 <a name='DiGi.WebAPI.Classes.PostResponse'></a>
 
