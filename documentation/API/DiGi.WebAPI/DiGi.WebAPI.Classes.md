@@ -841,12 +841,14 @@ The base URL to build upon\.
 
 Stores the query parameters to be appended to the URL\.
 
+A name maps to a list rather than a single value because a query string may repeat a name, which is how ASP.NET Core binds a collection parameter. The single-value overloads still hold one value per name and replace what was there.
+
 ```csharp
-private readonly Dictionary<string,string> dictionary;
+private readonly Dictionary<string,List<string>> dictionary;
 ```
 
 #### Field Value
-[System\.Collections\.Generic\.Dictionary&lt;](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.dictionary-2 'System\.Collections\.Generic\.Dictionary\`2')[System\.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System\.String')[,](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.dictionary-2 'System\.Collections\.Generic\.Dictionary\`2')[System\.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System\.String')[&gt;](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.dictionary-2 'System\.Collections\.Generic\.Dictionary\`2')
+[System\.Collections\.Generic\.Dictionary&lt;](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.dictionary-2 'System\.Collections\.Generic\.Dictionary\`2')[System\.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System\.String')[,](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.dictionary-2 'System\.Collections\.Generic\.Dictionary\`2')[System\.Collections\.Generic\.List&lt;](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1 'System\.Collections\.Generic\.List\`1')[System\.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System\.String')[&gt;](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1 'System\.Collections\.Generic\.List\`1')[&gt;](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.dictionary-2 'System\.Collections\.Generic\.Dictionary\`2')
 
 <a name='DiGi.WebAPI.Classes.UrlBuilder.url'></a>
 
@@ -984,6 +986,35 @@ The value of the query parameter\.
 [UrlBuilder](DiGi.WebAPI.Classes.md#DiGi.WebAPI.Classes.UrlBuilder 'DiGi\.WebAPI\.Classes\.UrlBuilder')  
 The current UrlBuilder instance\.
 
+<a name='DiGi.WebAPI.Classes.UrlBuilder.AddParameter(string,System.Collections.Generic.IEnumerable_int_)'></a>
+
+## UrlBuilder\.AddParameter\(string, IEnumerable\<int\>\) Method
+
+Adds an integer query parameter once per value, so the name repeats in the query string\.
+
+This is how a collection reaches a `[FromQuery]` action parameter: ASP.NET Core binds `?name=1&name=2` to an `int[]`, and does not split a single comma-separated value into one. Passing no values adds nothing rather than an empty parameter, and [TryGetValue&lt;T&gt;\(string, T\)](DiGi.WebAPI.Classes.md#DiGi.WebAPI.Classes.UrlBuilder.TryGetValue_T_(string,T) 'DiGi\.WebAPI\.Classes\.UrlBuilder\.TryGetValue\<T\>\(string, T\)') reads back only the first of them.
+
+```csharp
+public DiGi.WebAPI.Classes.UrlBuilder AddParameter(string name, System.Collections.Generic.IEnumerable<int>? values);
+```
+#### Parameters
+
+<a name='DiGi.WebAPI.Classes.UrlBuilder.AddParameter(string,System.Collections.Generic.IEnumerable_int_).name'></a>
+
+`name` [System\.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System\.String')
+
+The parameter name\.
+
+<a name='DiGi.WebAPI.Classes.UrlBuilder.AddParameter(string,System.Collections.Generic.IEnumerable_int_).values'></a>
+
+`values` [System\.Collections\.Generic\.IEnumerable&lt;](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.ienumerable-1 'System\.Collections\.Generic\.IEnumerable\`1')[System\.Int32](https://learn.microsoft.com/en-us/dotnet/api/system.int32 'System\.Int32')[&gt;](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.ienumerable-1 'System\.Collections\.Generic\.IEnumerable\`1')
+
+The integer values to encode, one occurrence of the parameter each\.
+
+#### Returns
+[UrlBuilder](DiGi.WebAPI.Classes.md#DiGi.WebAPI.Classes.UrlBuilder 'DiGi\.WebAPI\.Classes\.UrlBuilder')  
+The [UrlBuilder](DiGi.WebAPI.Classes.md#DiGi.WebAPI.Classes.UrlBuilder 'DiGi\.WebAPI\.Classes\.UrlBuilder') instance for chaining\.
+
 <a name='DiGi.WebAPI.Classes.UrlBuilder.Build()'></a>
 
 ## UrlBuilder\.Build\(\) Method
@@ -1017,6 +1048,8 @@ The complete URL with query parameters\.
 ## UrlBuilder\.TryGetValue\<T\>\(string, T\) Method
 
 Attempts to retrieve and convert a query parameter value to the specified type\.
+
+A name added through [AddParameter\(string, IEnumerable&lt;int&gt;\)](DiGi.WebAPI.Classes.md#DiGi.WebAPI.Classes.UrlBuilder.AddParameter(string,System.Collections.Generic.IEnumerable_int_) 'DiGi\.WebAPI\.Classes\.UrlBuilder\.AddParameter\(string, System\.Collections\.Generic\.IEnumerable\<int\>\)') holds several values; the first is the one returned.
 
 ```csharp
 public bool TryGetValue<T>(string parameterName, out T? value);

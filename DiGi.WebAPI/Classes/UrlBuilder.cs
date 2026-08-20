@@ -11,8 +11,9 @@ namespace DiGi.WebAPI.Classes
     {
         /// <summary>
         /// Stores the query parameters to be appended to the URL.
+        /// <para>A name maps to a list rather than a single value because a query string may repeat a name, which is how ASP.NET Core binds a collection parameter. The single-value overloads still hold one value per name and replace what was there.</para>
         /// </summary>
-        private readonly Dictionary<string, string> dictionary = [];
+        private readonly Dictionary<string, List<string>> dictionary = [];
         
         /// <summary>
         /// The base URL before query parameters are added.
@@ -70,7 +71,7 @@ namespace DiGi.WebAPI.Classes
             if (value != null)
             {
                 // WebUtility.UrlEncode handles special characters like / # & ?
-                dictionary[name] = WebUtility.UrlEncode(value);
+                dictionary[name] = [WebUtility.UrlEncode(value)];
             }
 
             return this;
@@ -110,6 +111,31 @@ namespace DiGi.WebAPI.Classes
         }
 
         /// <summary>
+        /// Adds an integer query parameter once per value, so the name repeats in the query string.
+        /// <para>This is how a collection reaches a <c>[FromQuery]</c> action parameter: ASP.NET Core binds <c>?name=1&amp;name=2</c> to an <c>int[]</c>, and does not split a single comma-separated value into one. Passing no values adds nothing rather than an empty parameter, and <see cref="TryGetValue{T}(string, out T)"/> reads back only the first of them.</para>
+        /// </summary>
+        /// <param name="name">The parameter name.</param>
+        /// <param name="values">The integer values to encode, one occurrence of the parameter each.</param>
+        /// <returns>The <see cref="UrlBuilder"/> instance for chaining.</returns>
+        public UrlBuilder AddParameter(string name, IEnumerable<int>? values)
+        {
+            if (name is null || values is null)
+            {
+                return this;
+            }
+
+            List<string> strings = [.. values.Select(x => WebUtility.UrlEncode(x.ToString()))];
+            if (strings.Count == 0)
+            {
+                return this;
+            }
+
+            dictionary[name] = strings;
+
+            return this;
+        }
+
+        /// <summary>
         /// Builds the final URL string.
         /// </summary>
         /// <returns>The built URL string with query parameters.</returns>
@@ -120,7 +146,7 @@ namespace DiGi.WebAPI.Classes
                 return url;
             }
 
-            string parametersString = string.Join("&", dictionary.Select(p => $"{p.Key}={p.Value}"));
+            string parametersString = string.Join("&", dictionary.SelectMany(p => p.Value.Select(x => $"{p.Key}={x}")));
 
             return $"{url}?{parametersString}";
         }
@@ -133,6 +159,7 @@ namespace DiGi.WebAPI.Classes
 
         /// <summary>
         /// Attempts to retrieve and convert a query parameter value to the specified type.
+        /// <para>A name added through <see cref="AddParameter(string, IEnumerable{int})"/> holds several values; the first is the one returned.</para>
         /// </summary>
         /// <typeparam name="T">The type to convert the parameter value to.</typeparam>
         /// <param name="parameterName">The name of the query parameter to retrieve.</param>
@@ -147,12 +174,12 @@ namespace DiGi.WebAPI.Classes
                 return false;
             }
 
-            if (!dictionary.TryGetValue(parameterName, out string? @string))
+            if (!dictionary.TryGetValue(parameterName, out List<string>? strings) || strings is null || strings.Count == 0)
             {
                 return false;
             }
 
-            @string = WebUtility.UrlDecode(@string);
+            string? @string = WebUtility.UrlDecode(strings[0]);
 
             if (!Core.Query.TryConvert(@string, out value))
             {
