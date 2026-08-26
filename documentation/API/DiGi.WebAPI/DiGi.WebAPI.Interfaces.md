@@ -56,8 +56,15 @@ public interface IWebAPIObject : DiGi.Core.Interfaces.IObject
 ```
 
 Derived  
+↳ [AssemblyInformation](DiGi.WebAPI.Classes.md#DiGi.WebAPI.Classes.AssemblyInformation 'DiGi\.WebAPI\.Classes\.AssemblyInformation')  
 ↳ [ControllerInformation](DiGi.WebAPI.Classes.md#DiGi.WebAPI.Classes.ControllerInformation 'DiGi\.WebAPI\.Classes\.ControllerInformation')  
+↳ [DiagnosticsConfiguration](DiGi.WebAPI.Classes.md#DiGi.WebAPI.Classes.DiagnosticsConfiguration 'DiGi\.WebAPI\.Classes\.DiagnosticsConfiguration')  
+↳ [EndpointInformation](DiGi.WebAPI.Classes.md#DiGi.WebAPI.Classes.EndpointInformation 'DiGi\.WebAPI\.Classes\.EndpointInformation')  
+↳ [EndpointParameterInformation](DiGi.WebAPI.Classes.md#DiGi.WebAPI.Classes.EndpointParameterInformation 'DiGi\.WebAPI\.Classes\.EndpointParameterInformation')  
 ↳ [SecurityKey](DiGi.WebAPI.Classes.md#DiGi.WebAPI.Classes.SecurityKey 'DiGi\.WebAPI\.Classes\.SecurityKey')  
+↳ [ServiceHealthInformation](DiGi.WebAPI.Classes.md#DiGi.WebAPI.Classes.ServiceHealthInformation 'DiGi\.WebAPI\.Classes\.ServiceHealthInformation')  
+↳ [SystemInformation](DiGi.WebAPI.Classes.md#DiGi.WebAPI.Classes.SystemInformation 'DiGi\.WebAPI\.Classes\.SystemInformation')  
+↳ [VersionInformation](DiGi.WebAPI.Classes.md#DiGi.WebAPI.Classes.VersionInformation 'DiGi\.WebAPI\.Classes\.VersionInformation')  
 ↳ [WebAPIController](DiGi.WebAPI.Classes.md#DiGi.WebAPI.Classes.WebAPIController 'DiGi\.WebAPI\.Classes\.WebAPIController')  
 ↳ [IWebAPIController](DiGi.WebAPI.Interfaces.md#DiGi.WebAPI.Interfaces.IWebAPIController 'DiGi\.WebAPI\.Interfaces\.IWebAPIController')  
 ↳ [IWebAPIGuidObject](DiGi.WebAPI.Interfaces.md#DiGi.WebAPI.Interfaces.IWebAPIGuidObject 'DiGi\.WebAPI\.Interfaces\.IWebAPIGuidObject')  
@@ -88,8 +95,15 @@ public interface IWebAPISerializableObject : DiGi.WebAPI.Interfaces.IWebAPIObjec
 ```
 
 Derived  
+↳ [AssemblyInformation](DiGi.WebAPI.Classes.md#DiGi.WebAPI.Classes.AssemblyInformation 'DiGi\.WebAPI\.Classes\.AssemblyInformation')  
 ↳ [ControllerInformation](DiGi.WebAPI.Classes.md#DiGi.WebAPI.Classes.ControllerInformation 'DiGi\.WebAPI\.Classes\.ControllerInformation')  
+↳ [DiagnosticsConfiguration](DiGi.WebAPI.Classes.md#DiGi.WebAPI.Classes.DiagnosticsConfiguration 'DiGi\.WebAPI\.Classes\.DiagnosticsConfiguration')  
+↳ [EndpointInformation](DiGi.WebAPI.Classes.md#DiGi.WebAPI.Classes.EndpointInformation 'DiGi\.WebAPI\.Classes\.EndpointInformation')  
+↳ [EndpointParameterInformation](DiGi.WebAPI.Classes.md#DiGi.WebAPI.Classes.EndpointParameterInformation 'DiGi\.WebAPI\.Classes\.EndpointParameterInformation')  
 ↳ [SecurityKey](DiGi.WebAPI.Classes.md#DiGi.WebAPI.Classes.SecurityKey 'DiGi\.WebAPI\.Classes\.SecurityKey')  
+↳ [ServiceHealthInformation](DiGi.WebAPI.Classes.md#DiGi.WebAPI.Classes.ServiceHealthInformation 'DiGi\.WebAPI\.Classes\.ServiceHealthInformation')  
+↳ [SystemInformation](DiGi.WebAPI.Classes.md#DiGi.WebAPI.Classes.SystemInformation 'DiGi\.WebAPI\.Classes\.SystemInformation')  
+↳ [VersionInformation](DiGi.WebAPI.Classes.md#DiGi.WebAPI.Classes.VersionInformation 'DiGi\.WebAPI\.Classes\.VersionInformation')  
 ↳ [IWebAPIGuidObject](DiGi.WebAPI.Interfaces.md#DiGi.WebAPI.Interfaces.IWebAPIGuidObject 'DiGi\.WebAPI\.Interfaces\.IWebAPIGuidObject')
 
 Implements [IWebAPIObject](DiGi.WebAPI.Interfaces.md#DiGi.WebAPI.Interfaces.IWebAPIObject 'DiGi\.WebAPI\.Interfaces\.IWebAPIObject'), [DiGi\.Core\.Interfaces\.IObject](https://learn.microsoft.com/en-us/dotnet/api/digi.core.interfaces.iobject 'DiGi\.Core\.Interfaces\.IObject'), [DiGi\.Core\.Interfaces\.ISerializableObject](https://learn.microsoft.com/en-us/dotnet/api/digi.core.interfaces.iserializableobject 'DiGi\.Core\.Interfaces\.ISerializableObject'), [DiGi\.Core\.Interfaces\.ICloneableObject&lt;](https://learn.microsoft.com/en-us/dotnet/api/digi.core.interfaces.icloneableobject-1 'DiGi\.Core\.Interfaces\.ICloneableObject\`1')[DiGi\.Core\.Interfaces\.ISerializableObject](https://learn.microsoft.com/en-us/dotnet/api/digi.core.interfaces.iserializableobject 'DiGi\.Core\.Interfaces\.ISerializableObject')[&gt;](https://learn.microsoft.com/en-us/dotnet/api/digi.core.interfaces.icloneableobject-1 'DiGi\.Core\.Interfaces\.ICloneableObject\`1'), [DiGi\.Core\.Interfaces\.ICloneableObject](https://learn.microsoft.com/en-us/dotnet/api/digi.core.interfaces.icloneableobject 'DiGi\.Core\.Interfaces\.ICloneableObject')

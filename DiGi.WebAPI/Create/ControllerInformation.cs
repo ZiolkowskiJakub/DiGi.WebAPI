@@ -1,4 +1,7 @@
-﻿using DiGi.WebAPI.Classes;
+using DiGi.WebAPI.Classes;
+using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Linq;
 using System.Reflection;
 
 namespace DiGi.WebAPI
@@ -17,14 +20,19 @@ namespace DiGi.WebAPI
                 return null;
             }
 
-            Assembly? assembly = typeInfo.AsType().Assembly;
+            Type type = typeInfo.AsType();
+            Assembly? assembly = type.Assembly;
             AssemblyName? assemblyName = assembly?.GetName();
 
             string? version = assemblyName?.Version?.ToString();
-
             string? informationalVersion = assembly?.GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion;
 
-            return new ControllerInformation(typeInfo.Name, assemblyName?.Name, version, informationalVersion);
+            string? routePrefix = type.GetCustomAttribute<RouteAttribute>()?.Template;
+
+            int actionCount = type.GetMethods(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly)
+                .Count(methodInfo => !methodInfo.IsSpecialName && methodInfo.GetCustomAttribute<NonActionAttribute>() is null);
+
+            return new ControllerInformation(typeInfo.Name, assemblyName?.Name, version, informationalVersion, actionCount, routePrefix);
         }
     }
 }
