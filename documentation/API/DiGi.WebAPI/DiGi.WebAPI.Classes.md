@@ -2102,6 +2102,125 @@ public int ThreadPoolAvailableWorkerThreads { get; }
 #### Property Value
 [System\.Int32](https://learn.microsoft.com/en-us/dotnet/api/system.int32 'System\.Int32')
 
+<a name='DiGi.WebAPI.Classes.TokenRevocationStore'></a>
+
+## TokenRevocationStore Class
+
+Tracks revoked JWT identifiers \(jti claims\) together with the expiration of the tokens that carry them,
+enabling server\-side session termination for otherwise stateless tokens\.
+
+Entries live at most as long as the token they revoke: expired entries are dropped by a lazy sweep
+            once the store grows past [SweepThreshold](DiGi.WebAPI.Classes.md#DiGi.WebAPI.Classes.TokenRevocationStore.SweepThreshold 'DiGi\.WebAPI\.Classes\.TokenRevocationStore\.SweepThreshold') entries, and are never reported as revoked by
+            [IsRevoked\(string\)](DiGi.WebAPI.Classes.md#DiGi.WebAPI.Classes.TokenRevocationStore.IsRevoked(string) 'DiGi\.WebAPI\.Classes\.TokenRevocationStore\.IsRevoked\(string\)') after their token has expired.
+
+```csharp
+public sealed class TokenRevocationStore
+```
+
+Inheritance [System\.Object](https://learn.microsoft.com/en-us/dotnet/api/system.object 'System\.Object') → TokenRevocationStore
+### Fields
+
+<a name='DiGi.WebAPI.Classes.TokenRevocationStore.revocationExpiries'></a>
+
+## TokenRevocationStore\.revocationExpiries Field
+
+Stores the expiration of each revoked token, keyed by its JWT identifier \(jti claim\)\.
+
+```csharp
+private readonly ConcurrentDictionary<string,DateTimeOffset> revocationExpiries;
+```
+
+#### Field Value
+[System\.Collections\.Concurrent\.ConcurrentDictionary&lt;](https://learn.microsoft.com/en-us/dotnet/api/system.collections.concurrent.concurrentdictionary-2 'System\.Collections\.Concurrent\.ConcurrentDictionary\`2')[System\.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System\.String')[,](https://learn.microsoft.com/en-us/dotnet/api/system.collections.concurrent.concurrentdictionary-2 'System\.Collections\.Concurrent\.ConcurrentDictionary\`2')[System\.DateTimeOffset](https://learn.microsoft.com/en-us/dotnet/api/system.datetimeoffset 'System\.DateTimeOffset')[&gt;](https://learn.microsoft.com/en-us/dotnet/api/system.collections.concurrent.concurrentdictionary-2 'System\.Collections\.Concurrent\.ConcurrentDictionary\`2')
+
+<a name='DiGi.WebAPI.Classes.TokenRevocationStore.SweepThreshold'></a>
+
+## TokenRevocationStore\.SweepThreshold Field
+
+The number of stored revocations that, once exceeded, triggers a sweep of expired entries on the next [Revoke\(string, DateTimeOffset\)](DiGi.WebAPI.Classes.md#DiGi.WebAPI.Classes.TokenRevocationStore.Revoke(string,System.DateTimeOffset) 'DiGi\.WebAPI\.Classes\.TokenRevocationStore\.Revoke\(string, System\.DateTimeOffset\)')\.
+
+```csharp
+public const int SweepThreshold = 1024;
+```
+
+#### Field Value
+[System\.Int32](https://learn.microsoft.com/en-us/dotnet/api/system.int32 'System\.Int32')
+### Properties
+
+<a name='DiGi.WebAPI.Classes.TokenRevocationStore.Count'></a>
+
+## TokenRevocationStore\.Count Property
+
+Gets the number of revocations currently stored, including any not yet swept expired entries\.
+
+```csharp
+public int Count { get; }
+```
+
+#### Property Value
+[System\.Int32](https://learn.microsoft.com/en-us/dotnet/api/system.int32 'System\.Int32')
+### Methods
+
+<a name='DiGi.WebAPI.Classes.TokenRevocationStore.IsRevoked(string)'></a>
+
+## TokenRevocationStore\.IsRevoked\(string\) Method
+
+Determines whether the token carrying the given JWT identifier \(jti claim\) has been revoked and has not yet expired\.
+
+A null or whitespace identifier returns false: a token without a jti claim cannot be revoked, and an
+            entry whose token has already expired is not reported as revoked, because lifetime validation rejects such a token regardless.
+
+```csharp
+public bool IsRevoked(string? jti);
+```
+#### Parameters
+
+<a name='DiGi.WebAPI.Classes.TokenRevocationStore.IsRevoked(string).jti'></a>
+
+`jti` [System\.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System\.String')
+
+The JWT identifier \(jti claim\) to check\.
+
+#### Returns
+[System\.Boolean](https://learn.microsoft.com/en-us/dotnet/api/system.boolean 'System\.Boolean')  
+true if the identifier is revoked and the revoked token has not yet expired; otherwise, false\.
+
+<a name='DiGi.WebAPI.Classes.TokenRevocationStore.Revoke(string,System.DateTimeOffset)'></a>
+
+## TokenRevocationStore\.Revoke\(string, DateTimeOffset\) Method
+
+Revokes the token carrying the given JWT identifier \(jti claim\) until the token expires naturally\.
+
+Calling this for an already revoked identifier is a no-op that keeps the original entry. A null or
+            whitespace identifier is ignored: a token without a jti claim cannot be represented in the store.
+
+```csharp
+public void Revoke(string? jti, System.DateTimeOffset expiresAt);
+```
+#### Parameters
+
+<a name='DiGi.WebAPI.Classes.TokenRevocationStore.Revoke(string,System.DateTimeOffset).jti'></a>
+
+`jti` [System\.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System\.String')
+
+The JWT identifier \(jti claim\) of the token to revoke\.
+
+<a name='DiGi.WebAPI.Classes.TokenRevocationStore.Revoke(string,System.DateTimeOffset).expiresAt'></a>
+
+`expiresAt` [System\.DateTimeOffset](https://learn.microsoft.com/en-us/dotnet/api/system.datetimeoffset 'System\.DateTimeOffset')
+
+The expiration of the revoked token; the entry is irrelevant and removable after this instant\.
+
+<a name='DiGi.WebAPI.Classes.TokenRevocationStore.SweepExpired()'></a>
+
+## TokenRevocationStore\.SweepExpired\(\) Method
+
+Removes every stored entry whose token has already expired, bounding the memory of the store by the token lifetime\.
+
+```csharp
+private void SweepExpired();
+```
+
 <a name='DiGi.WebAPI.Classes.UrlBuilder'></a>
 
 ## UrlBuilder Class
