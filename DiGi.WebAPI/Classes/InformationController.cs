@@ -50,11 +50,11 @@ namespace DiGi.WebAPI.Classes
         /// <param name="key">Access key supplied through the <c>key</c> request header.</param>
         /// <param name="cancellationToken">A cancellation token that can be used to cancel the request.</param>
         /// <returns>A JSON list of loaded assembly metadata.</returns>
-        [HttpGet("assemblies", Name = $"{nameof(InformationController)}_{nameof(GetAssembliesAsync)}")]
+        [HttpGet("assemblies", Name = $"{nameof(InformationController)}_{nameof(GetAssemblyInformationsAsync)}")]
         [ProducesResponseType(typeof(List<AssemblyInformation>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        public async Task<IActionResult> GetAssembliesAsync([FromHeader(Name = "key")] string? key = null, CancellationToken cancellationToken = default)
+        public async Task<IActionResult> GetAssemblyInformationsAsync([FromHeader(Name = "key")] string? key = null, CancellationToken cancellationToken = default)
         {
             if (!diagnosticsConfiguration.IsAuthorized(key))
             {
@@ -92,11 +92,11 @@ namespace DiGi.WebAPI.Classes
         /// <param name="key">Access key supplied through the <c>key</c> request header.</param>
         /// <param name="cancellationToken">A cancellation token that can be used to cancel the request.</param>
         /// <returns>A JSON string containing controller information, or an empty response if no controllers are found.</returns>
-        [HttpGet("controllers", Name = $"{nameof(InformationController)}_{nameof(GetControllersAsync)}")]
+        [HttpGet("controllers", Name = $"{nameof(InformationController)}_{nameof(GetControllerInformationsAsync)}")]
         [ProducesResponseType(typeof(List<ControllerInformation>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        public async Task<IActionResult> GetControllersAsync([FromHeader(Name = "key")] string? key = null, CancellationToken cancellationToken = default)
+        public async Task<IActionResult> GetControllerInformationsAsync([FromHeader(Name = "key")] string? key = null, CancellationToken cancellationToken = default)
         {
             if (!diagnosticsConfiguration.IsAuthorized(key))
             {
@@ -139,11 +139,11 @@ namespace DiGi.WebAPI.Classes
         /// <param name="key">Access key supplied through the <c>key</c> request header, required when includeignored is set to true.</param>
         /// <param name="cancellationToken">A cancellation token that can be used to cancel the request.</param>
         /// <returns>A JSON list of endpoint metadata.</returns>
-        [HttpGet("endpoints", Name = $"{nameof(InformationController)}_{nameof(GetEndpointsAsync)}")]
+        [HttpGet("endpoints", Name = $"{nameof(InformationController)}_{nameof(GetEndpointInformationsAsync)}")]
         [ProducesResponseType(typeof(List<EndpointInformation>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        public async Task<IActionResult> GetEndpointsAsync([FromQuery(Name = "controller")] string? controller, [FromQuery(Name = "includeignored")] bool includeIgnored = false, [FromHeader(Name = "key")] string? key = null, CancellationToken cancellationToken = default)
+        public async Task<IActionResult> GetEndpointInformationsAsync([FromQuery(Name = "controller")] string? controller, [FromQuery(Name = "includeignored")] bool includeIgnored = false, [FromHeader(Name = "key")] string? key = null, CancellationToken cancellationToken = default)
         {
             if (includeIgnored && !diagnosticsConfiguration.IsAuthorized(key))
             {
@@ -210,10 +210,10 @@ namespace DiGi.WebAPI.Classes
         /// </summary>
         /// <param name="cancellationToken">A cancellation token that can be used to cancel the request.</param>
         /// <returns>The service health information.</returns>
-        [HttpGet("health", Name = $"{nameof(InformationController)}_{nameof(GetHealthAsync)}")]
+        [HttpGet("health", Name = $"{nameof(InformationController)}_{nameof(GetServiceHealthInformationAsync)}")]
         [ProducesResponseType(typeof(ServiceHealthInformation), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public async Task<IActionResult> GetHealthAsync(CancellationToken cancellationToken = default)
+        public async Task<IActionResult> GetServiceHealthInformationAsync(CancellationToken cancellationToken = default)
         {
             ServiceHealthInformation serviceHealthInformation = Create.ServiceHealthInformation();
 
@@ -232,11 +232,11 @@ namespace DiGi.WebAPI.Classes
         /// <param name="key">Access key supplied through the <c>key</c> request header.</param>
         /// <param name="cancellationToken">A cancellation token that can be used to cancel the request.</param>
         /// <returns>The system telemetry information.</returns>
-        [HttpGet("system", Name = $"{nameof(InformationController)}_{nameof(GetSystemAsync)}")]
+        [HttpGet("system", Name = $"{nameof(InformationController)}_{nameof(GetSystemInformationAsync)}")]
         [ProducesResponseType(typeof(SystemInformation), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        public async Task<IActionResult> GetSystemAsync([FromHeader(Name = "key")] string? key = null, CancellationToken cancellationToken = default)
+        public async Task<IActionResult> GetSystemInformationAsync([FromHeader(Name = "key")] string? key = null, CancellationToken cancellationToken = default)
         {
             if (!diagnosticsConfiguration.IsAuthorized(key))
             {
@@ -262,10 +262,10 @@ namespace DiGi.WebAPI.Classes
         /// <param name="key">Optional access key supplied through the <c>key</c> request header. When valid, commit hashes are included.</param>
         /// <param name="cancellationToken">A cancellation token that can be used to cancel the request.</param>
         /// <returns>The version and runtime metadata.</returns>
-        [HttpGet("version", Name = $"{nameof(InformationController)}_{nameof(GetVersionAsync)}")]
+        [HttpGet("version", Name = $"{nameof(InformationController)}_{nameof(GetVersionInformationAsync)}")]
         [ProducesResponseType(typeof(VersionInformation), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public async Task<IActionResult> GetVersionAsync([FromHeader(Name = "key")] string? key = null, CancellationToken cancellationToken = default)
+        public async Task<IActionResult> GetVersionInformationAsync([FromHeader(Name = "key")] string? key = null, CancellationToken cancellationToken = default)
         {
             VersionInformation versionInformation = Create.VersionInformation(diagnosticsConfiguration.IsAuthorized(key));
 

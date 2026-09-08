@@ -999,24 +999,24 @@ Optional host environment descriptor\.
 Optional diagnostics configuration for access key validation\. When not supplied by dependency injection it is loaded from disk, which is a per\-request cost \- register it as a singleton on the host\.
 ### Methods
 
-<a name='DiGi.WebAPI.Classes.InformationController.GetAssembliesAsync(string,System.Threading.CancellationToken)'></a>
+<a name='DiGi.WebAPI.Classes.InformationController.GetAssemblyInformationsAsync(string,System.Threading.CancellationToken)'></a>
 
-## InformationController\.GetAssembliesAsync\(string, CancellationToken\) Method
+## InformationController\.GetAssemblyInformationsAsync\(string, CancellationToken\) Method
 
 Retrieves an inventory of loaded assemblies in the default assembly load context\. Requires a valid key\.
 
 ```csharp
-public System.Threading.Tasks.Task<Microsoft.AspNetCore.Mvc.IActionResult> GetAssembliesAsync(string? key=null, System.Threading.CancellationToken cancellationToken=default(System.Threading.CancellationToken));
+public System.Threading.Tasks.Task<Microsoft.AspNetCore.Mvc.IActionResult> GetAssemblyInformationsAsync(string? key=null, System.Threading.CancellationToken cancellationToken=default(System.Threading.CancellationToken));
 ```
 #### Parameters
 
-<a name='DiGi.WebAPI.Classes.InformationController.GetAssembliesAsync(string,System.Threading.CancellationToken).key'></a>
+<a name='DiGi.WebAPI.Classes.InformationController.GetAssemblyInformationsAsync(string,System.Threading.CancellationToken).key'></a>
 
 `key` [System\.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System\.String')
 
 Access key supplied through the `key` request header\.
 
-<a name='DiGi.WebAPI.Classes.InformationController.GetAssembliesAsync(string,System.Threading.CancellationToken).cancellationToken'></a>
+<a name='DiGi.WebAPI.Classes.InformationController.GetAssemblyInformationsAsync(string,System.Threading.CancellationToken).cancellationToken'></a>
 
 `cancellationToken` [System\.Threading\.CancellationToken](https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtoken 'System\.Threading\.CancellationToken')
 
@@ -1026,24 +1026,24 @@ A cancellation token that can be used to cancel the request\.
 [System\.Threading\.Tasks\.Task&lt;](https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task-1 'System\.Threading\.Tasks\.Task\`1')[Microsoft\.AspNetCore\.Mvc\.IActionResult](https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.mvc.iactionresult 'Microsoft\.AspNetCore\.Mvc\.IActionResult')[&gt;](https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task-1 'System\.Threading\.Tasks\.Task\`1')  
 A JSON list of loaded assembly metadata\.
 
-<a name='DiGi.WebAPI.Classes.InformationController.GetControllersAsync(string,System.Threading.CancellationToken)'></a>
+<a name='DiGi.WebAPI.Classes.InformationController.GetControllerInformationsAsync(string,System.Threading.CancellationToken)'></a>
 
-## InformationController\.GetControllersAsync\(string, CancellationToken\) Method
+## InformationController\.GetControllerInformationsAsync\(string, CancellationToken\) Method
 
 Retrieves a list of all registered controllers in the application\. Requires a valid key\.
 
 ```csharp
-public System.Threading.Tasks.Task<Microsoft.AspNetCore.Mvc.IActionResult> GetControllersAsync(string? key=null, System.Threading.CancellationToken cancellationToken=default(System.Threading.CancellationToken));
+public System.Threading.Tasks.Task<Microsoft.AspNetCore.Mvc.IActionResult> GetControllerInformationsAsync(string? key=null, System.Threading.CancellationToken cancellationToken=default(System.Threading.CancellationToken));
 ```
 #### Parameters
 
-<a name='DiGi.WebAPI.Classes.InformationController.GetControllersAsync(string,System.Threading.CancellationToken).key'></a>
+<a name='DiGi.WebAPI.Classes.InformationController.GetControllerInformationsAsync(string,System.Threading.CancellationToken).key'></a>
 
 `key` [System\.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System\.String')
 
 Access key supplied through the `key` request header\.
 
-<a name='DiGi.WebAPI.Classes.InformationController.GetControllersAsync(string,System.Threading.CancellationToken).cancellationToken'></a>
+<a name='DiGi.WebAPI.Classes.InformationController.GetControllerInformationsAsync(string,System.Threading.CancellationToken).cancellationToken'></a>
 
 `cancellationToken` [System\.Threading\.CancellationToken](https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtoken 'System\.Threading\.CancellationToken')
 
@@ -1053,36 +1053,36 @@ A cancellation token that can be used to cancel the request\.
 [System\.Threading\.Tasks\.Task&lt;](https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task-1 'System\.Threading\.Tasks\.Task\`1')[Microsoft\.AspNetCore\.Mvc\.IActionResult](https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.mvc.iactionresult 'Microsoft\.AspNetCore\.Mvc\.IActionResult')[&gt;](https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task-1 'System\.Threading\.Tasks\.Task\`1')  
 A JSON string containing controller information, or an empty response if no controllers are found\.
 
-<a name='DiGi.WebAPI.Classes.InformationController.GetEndpointsAsync(string,bool,string,System.Threading.CancellationToken)'></a>
+<a name='DiGi.WebAPI.Classes.InformationController.GetEndpointInformationsAsync(string,bool,string,System.Threading.CancellationToken)'></a>
 
-## InformationController\.GetEndpointsAsync\(string, bool, string, CancellationToken\) Method
+## InformationController\.GetEndpointInformationsAsync\(string, bool, string, CancellationToken\) Method
 
 Retrieves the catalog of registered action routes and parameter contracts\. Inspecting internal routes requires a valid key\.
 
 ```csharp
-public System.Threading.Tasks.Task<Microsoft.AspNetCore.Mvc.IActionResult> GetEndpointsAsync(string? controller, bool includeIgnored=false, string? key=null, System.Threading.CancellationToken cancellationToken=default(System.Threading.CancellationToken));
+public System.Threading.Tasks.Task<Microsoft.AspNetCore.Mvc.IActionResult> GetEndpointInformationsAsync(string? controller, bool includeIgnored=false, string? key=null, System.Threading.CancellationToken cancellationToken=default(System.Threading.CancellationToken));
 ```
 #### Parameters
 
-<a name='DiGi.WebAPI.Classes.InformationController.GetEndpointsAsync(string,bool,string,System.Threading.CancellationToken).controller'></a>
+<a name='DiGi.WebAPI.Classes.InformationController.GetEndpointInformationsAsync(string,bool,string,System.Threading.CancellationToken).controller'></a>
 
 `controller` [System\.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System\.String')
 
 Optional controller name filter\.
 
-<a name='DiGi.WebAPI.Classes.InformationController.GetEndpointsAsync(string,bool,string,System.Threading.CancellationToken).includeIgnored'></a>
+<a name='DiGi.WebAPI.Classes.InformationController.GetEndpointInformationsAsync(string,bool,string,System.Threading.CancellationToken).includeIgnored'></a>
 
 `includeIgnored` [System\.Boolean](https://learn.microsoft.com/en-us/dotnet/api/system.boolean 'System\.Boolean')
 
 Whether to include endpoints hidden from Swagger explorer\. Defaults to false for safe public exposure\.
 
-<a name='DiGi.WebAPI.Classes.InformationController.GetEndpointsAsync(string,bool,string,System.Threading.CancellationToken).key'></a>
+<a name='DiGi.WebAPI.Classes.InformationController.GetEndpointInformationsAsync(string,bool,string,System.Threading.CancellationToken).key'></a>
 
 `key` [System\.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System\.String')
 
 Access key supplied through the `key` request header, required when includeignored is set to true\.
 
-<a name='DiGi.WebAPI.Classes.InformationController.GetEndpointsAsync(string,bool,string,System.Threading.CancellationToken).cancellationToken'></a>
+<a name='DiGi.WebAPI.Classes.InformationController.GetEndpointInformationsAsync(string,bool,string,System.Threading.CancellationToken).cancellationToken'></a>
 
 `cancellationToken` [System\.Threading\.CancellationToken](https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtoken 'System\.Threading\.CancellationToken')
 
@@ -1092,18 +1092,18 @@ A cancellation token that can be used to cancel the request\.
 [System\.Threading\.Tasks\.Task&lt;](https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task-1 'System\.Threading\.Tasks\.Task\`1')[Microsoft\.AspNetCore\.Mvc\.IActionResult](https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.mvc.iactionresult 'Microsoft\.AspNetCore\.Mvc\.IActionResult')[&gt;](https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task-1 'System\.Threading\.Tasks\.Task\`1')  
 A JSON list of endpoint metadata\.
 
-<a name='DiGi.WebAPI.Classes.InformationController.GetHealthAsync(System.Threading.CancellationToken)'></a>
+<a name='DiGi.WebAPI.Classes.InformationController.GetServiceHealthInformationAsync(System.Threading.CancellationToken)'></a>
 
-## InformationController\.GetHealthAsync\(CancellationToken\) Method
+## InformationController\.GetServiceHealthInformationAsync\(CancellationToken\) Method
 
 Retrieves service health status, server UTC/local timestamps, uptime, and process ID\.
 
 ```csharp
-public System.Threading.Tasks.Task<Microsoft.AspNetCore.Mvc.IActionResult> GetHealthAsync(System.Threading.CancellationToken cancellationToken=default(System.Threading.CancellationToken));
+public System.Threading.Tasks.Task<Microsoft.AspNetCore.Mvc.IActionResult> GetServiceHealthInformationAsync(System.Threading.CancellationToken cancellationToken=default(System.Threading.CancellationToken));
 ```
 #### Parameters
 
-<a name='DiGi.WebAPI.Classes.InformationController.GetHealthAsync(System.Threading.CancellationToken).cancellationToken'></a>
+<a name='DiGi.WebAPI.Classes.InformationController.GetServiceHealthInformationAsync(System.Threading.CancellationToken).cancellationToken'></a>
 
 `cancellationToken` [System\.Threading\.CancellationToken](https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtoken 'System\.Threading\.CancellationToken')
 
@@ -1113,24 +1113,24 @@ A cancellation token that can be used to cancel the request\.
 [System\.Threading\.Tasks\.Task&lt;](https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task-1 'System\.Threading\.Tasks\.Task\`1')[Microsoft\.AspNetCore\.Mvc\.IActionResult](https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.mvc.iactionresult 'Microsoft\.AspNetCore\.Mvc\.IActionResult')[&gt;](https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task-1 'System\.Threading\.Tasks\.Task\`1')  
 The service health information\.
 
-<a name='DiGi.WebAPI.Classes.InformationController.GetSystemAsync(string,System.Threading.CancellationToken)'></a>
+<a name='DiGi.WebAPI.Classes.InformationController.GetSystemInformationAsync(string,System.Threading.CancellationToken)'></a>
 
-## InformationController\.GetSystemAsync\(string, CancellationToken\) Method
+## InformationController\.GetSystemInformationAsync\(string, CancellationToken\) Method
 
 Retrieves host system, environment, memory, and thread pool diagnostic information\. Requires a valid key\.
 
 ```csharp
-public System.Threading.Tasks.Task<Microsoft.AspNetCore.Mvc.IActionResult> GetSystemAsync(string? key=null, System.Threading.CancellationToken cancellationToken=default(System.Threading.CancellationToken));
+public System.Threading.Tasks.Task<Microsoft.AspNetCore.Mvc.IActionResult> GetSystemInformationAsync(string? key=null, System.Threading.CancellationToken cancellationToken=default(System.Threading.CancellationToken));
 ```
 #### Parameters
 
-<a name='DiGi.WebAPI.Classes.InformationController.GetSystemAsync(string,System.Threading.CancellationToken).key'></a>
+<a name='DiGi.WebAPI.Classes.InformationController.GetSystemInformationAsync(string,System.Threading.CancellationToken).key'></a>
 
 `key` [System\.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System\.String')
 
 Access key supplied through the `key` request header\.
 
-<a name='DiGi.WebAPI.Classes.InformationController.GetSystemAsync(string,System.Threading.CancellationToken).cancellationToken'></a>
+<a name='DiGi.WebAPI.Classes.InformationController.GetSystemInformationAsync(string,System.Threading.CancellationToken).cancellationToken'></a>
 
 `cancellationToken` [System\.Threading\.CancellationToken](https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtoken 'System\.Threading\.CancellationToken')
 
@@ -1140,9 +1140,9 @@ A cancellation token that can be used to cancel the request\.
 [System\.Threading\.Tasks\.Task&lt;](https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task-1 'System\.Threading\.Tasks\.Task\`1')[Microsoft\.AspNetCore\.Mvc\.IActionResult](https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.mvc.iactionresult 'Microsoft\.AspNetCore\.Mvc\.IActionResult')[&gt;](https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task-1 'System\.Threading\.Tasks\.Task\`1')  
 The system telemetry information\.
 
-<a name='DiGi.WebAPI.Classes.InformationController.GetVersionAsync(string,System.Threading.CancellationToken)'></a>
+<a name='DiGi.WebAPI.Classes.InformationController.GetVersionInformationAsync(string,System.Threading.CancellationToken)'></a>
 
-## InformationController\.GetVersionAsync\(string, CancellationToken\) Method
+## InformationController\.GetVersionInformationAsync\(string, CancellationToken\) Method
 
 Retrieves comprehensive version and runtime diagnostic information across the service host, WebAPI framework, loaded extensions, and \.NET CLR\.
 
@@ -1151,17 +1151,17 @@ The `Extensions` list carries the simple name and build stamp of every extension
 The source control commit hash is appended to the informational versions only for callers supplying a valid key, because it identifies the exact revision of a publicly readable repository.
 
 ```csharp
-public System.Threading.Tasks.Task<Microsoft.AspNetCore.Mvc.IActionResult> GetVersionAsync(string? key=null, System.Threading.CancellationToken cancellationToken=default(System.Threading.CancellationToken));
+public System.Threading.Tasks.Task<Microsoft.AspNetCore.Mvc.IActionResult> GetVersionInformationAsync(string? key=null, System.Threading.CancellationToken cancellationToken=default(System.Threading.CancellationToken));
 ```
 #### Parameters
 
-<a name='DiGi.WebAPI.Classes.InformationController.GetVersionAsync(string,System.Threading.CancellationToken).key'></a>
+<a name='DiGi.WebAPI.Classes.InformationController.GetVersionInformationAsync(string,System.Threading.CancellationToken).key'></a>
 
 `key` [System\.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System\.String')
 
 Optional access key supplied through the `key` request header\. When valid, commit hashes are included\.
 
-<a name='DiGi.WebAPI.Classes.InformationController.GetVersionAsync(string,System.Threading.CancellationToken).cancellationToken'></a>
+<a name='DiGi.WebAPI.Classes.InformationController.GetVersionInformationAsync(string,System.Threading.CancellationToken).cancellationToken'></a>
 
 `cancellationToken` [System\.Threading\.CancellationToken](https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtoken 'System\.Threading\.CancellationToken')
 
