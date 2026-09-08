@@ -1,4 +1,4 @@
-﻿using DiGi.WebAPI.Classes;
+using DiGi.WebAPI.Classes;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Abstractions;
@@ -255,7 +255,8 @@ namespace DiGi.WebAPI.Classes
         }
 
         /// <summary>
-        /// Retrieves comprehensive version and runtime diagnostic information across the service host, WebAPI framework, and .NET CLR.
+        /// Retrieves comprehensive version and runtime diagnostic information across the service host, WebAPI framework, loaded extensions, and .NET CLR.
+        /// <para>The <c>Extensions</c> list carries the simple name and build stamp of every extension loaded from an <c>extensions/</c> directory - the public way to identify a deployed extension build.</para>
         /// <para>The source control commit hash is appended to the informational versions only for callers supplying a valid key, because it identifies the exact revision of a publicly readable repository.</para>
         /// </summary>
         /// <param name="key">Optional access key supplied through the <c>key</c> request header. When valid, commit hashes are included.</param>

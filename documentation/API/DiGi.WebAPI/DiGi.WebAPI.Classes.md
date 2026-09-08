@@ -845,6 +845,109 @@ public string? TypeName { get; }
 #### Property Value
 [System\.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System\.String')
 
+<a name='DiGi.WebAPI.Classes.ExtensionVersionInformation'></a>
+
+## ExtensionVersionInformation Class
+
+Holds the identity and build stamp of a single loaded extension assembly for the public version tier\.
+
+Deliberately minimal: only the simple name and the informational version are exposed, so the public response stays
+            coarser than the protected `/information/assemblies` inventory. The source control commit hash is trimmed for
+            unauthenticated callers by `Create.VersionInformation` and kept only for authorized ones.
+
+```csharp
+public class ExtensionVersionInformation : DiGi.Core.Classes.SerializableObject, DiGi.WebAPI.Interfaces.IWebAPISerializableObject, DiGi.WebAPI.Interfaces.IWebAPIObject, DiGi.Core.Interfaces.IObject, DiGi.Core.Interfaces.ISerializableObject, DiGi.Core.Interfaces.ICloneableObject<DiGi.Core.Interfaces.ISerializableObject>, DiGi.Core.Interfaces.ICloneableObject
+```
+
+Inheritance [System\.Object](https://learn.microsoft.com/en-us/dotnet/api/system.object 'System\.Object') → [DiGi\.Core\.Classes\.Object](https://learn.microsoft.com/en-us/dotnet/api/digi.core.classes.object 'DiGi\.Core\.Classes\.Object') → [DiGi\.Core\.Classes\.SerializableObject](https://learn.microsoft.com/en-us/dotnet/api/digi.core.classes.serializableobject 'DiGi\.Core\.Classes\.SerializableObject') → ExtensionVersionInformation
+
+Implements [IWebAPISerializableObject](DiGi.WebAPI.Interfaces.md#DiGi.WebAPI.Interfaces.IWebAPISerializableObject 'DiGi\.WebAPI\.Interfaces\.IWebAPISerializableObject'), [IWebAPIObject](DiGi.WebAPI.Interfaces.md#DiGi.WebAPI.Interfaces.IWebAPIObject 'DiGi\.WebAPI\.Interfaces\.IWebAPIObject'), [DiGi\.Core\.Interfaces\.IObject](https://learn.microsoft.com/en-us/dotnet/api/digi.core.interfaces.iobject 'DiGi\.Core\.Interfaces\.IObject'), [DiGi\.Core\.Interfaces\.ISerializableObject](https://learn.microsoft.com/en-us/dotnet/api/digi.core.interfaces.iserializableobject 'DiGi\.Core\.Interfaces\.ISerializableObject'), [DiGi\.Core\.Interfaces\.ICloneableObject&lt;](https://learn.microsoft.com/en-us/dotnet/api/digi.core.interfaces.icloneableobject-1 'DiGi\.Core\.Interfaces\.ICloneableObject\`1')[DiGi\.Core\.Interfaces\.ISerializableObject](https://learn.microsoft.com/en-us/dotnet/api/digi.core.interfaces.iserializableobject 'DiGi\.Core\.Interfaces\.ISerializableObject')[&gt;](https://learn.microsoft.com/en-us/dotnet/api/digi.core.interfaces.icloneableobject-1 'DiGi\.Core\.Interfaces\.ICloneableObject\`1'), [DiGi\.Core\.Interfaces\.ICloneableObject](https://learn.microsoft.com/en-us/dotnet/api/digi.core.interfaces.icloneableobject 'DiGi\.Core\.Interfaces\.ICloneableObject')
+### Constructors
+
+<a name='DiGi.WebAPI.Classes.ExtensionVersionInformation.ExtensionVersionInformation(DiGi.WebAPI.Classes.ExtensionVersionInformation)'></a>
+
+## ExtensionVersionInformation\(ExtensionVersionInformation\) Constructor
+
+Initializes a new instance of the [ExtensionVersionInformation](DiGi.WebAPI.Classes.md#DiGi.WebAPI.Classes.ExtensionVersionInformation 'DiGi\.WebAPI\.Classes\.ExtensionVersionInformation') class by copying from another instance\.
+
+```csharp
+public ExtensionVersionInformation(DiGi.WebAPI.Classes.ExtensionVersionInformation? extensionVersionInformation);
+```
+#### Parameters
+
+<a name='DiGi.WebAPI.Classes.ExtensionVersionInformation.ExtensionVersionInformation(DiGi.WebAPI.Classes.ExtensionVersionInformation).extensionVersionInformation'></a>
+
+`extensionVersionInformation` [ExtensionVersionInformation](DiGi.WebAPI.Classes.md#DiGi.WebAPI.Classes.ExtensionVersionInformation 'DiGi\.WebAPI\.Classes\.ExtensionVersionInformation')
+
+The [ExtensionVersionInformation](DiGi.WebAPI.Classes.md#DiGi.WebAPI.Classes.ExtensionVersionInformation 'DiGi\.WebAPI\.Classes\.ExtensionVersionInformation') to copy from\.
+
+<a name='DiGi.WebAPI.Classes.ExtensionVersionInformation.ExtensionVersionInformation(string,string)'></a>
+
+## ExtensionVersionInformation\(string, string\) Constructor
+
+Initializes a new instance of the [ExtensionVersionInformation](DiGi.WebAPI.Classes.md#DiGi.WebAPI.Classes.ExtensionVersionInformation 'DiGi\.WebAPI\.Classes\.ExtensionVersionInformation') class\.
+
+```csharp
+public ExtensionVersionInformation(string? name, string? informationalVersion);
+```
+#### Parameters
+
+<a name='DiGi.WebAPI.Classes.ExtensionVersionInformation.ExtensionVersionInformation(string,string).name'></a>
+
+`name` [System\.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System\.String')
+
+The simple name of the extension assembly\.
+
+<a name='DiGi.WebAPI.Classes.ExtensionVersionInformation.ExtensionVersionInformation(string,string).informationalVersion'></a>
+
+`informationalVersion` [System\.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System\.String')
+
+The extension assembly informational version, e\.g\. `0.8.8.20260908111220`\.
+
+<a name='DiGi.WebAPI.Classes.ExtensionVersionInformation.ExtensionVersionInformation(System.Text.Json.Nodes.JsonObject)'></a>
+
+## ExtensionVersionInformation\(JsonObject\) Constructor
+
+Initializes a new instance of the [ExtensionVersionInformation](DiGi.WebAPI.Classes.md#DiGi.WebAPI.Classes.ExtensionVersionInformation 'DiGi\.WebAPI\.Classes\.ExtensionVersionInformation') class from a JSON object\.
+
+```csharp
+public ExtensionVersionInformation(System.Text.Json.Nodes.JsonObject? jsonObject);
+```
+#### Parameters
+
+<a name='DiGi.WebAPI.Classes.ExtensionVersionInformation.ExtensionVersionInformation(System.Text.Json.Nodes.JsonObject).jsonObject'></a>
+
+`jsonObject` [System\.Text\.Json\.Nodes\.JsonObject](https://learn.microsoft.com/en-us/dotnet/api/system.text.json.nodes.jsonobject 'System\.Text\.Json\.Nodes\.JsonObject')
+
+The JSON object to deserialize from\.
+### Properties
+
+<a name='DiGi.WebAPI.Classes.ExtensionVersionInformation.InformationalVersion'></a>
+
+## ExtensionVersionInformation\.InformationalVersion Property
+
+Gets the extension assembly informational version \(e\.g\., git commit\)\.
+
+```csharp
+public string? InformationalVersion { get; }
+```
+
+#### Property Value
+[System\.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System\.String')
+
+<a name='DiGi.WebAPI.Classes.ExtensionVersionInformation.Name'></a>
+
+## ExtensionVersionInformation\.Name Property
+
+Gets the simple name of the extension assembly\.
+
+```csharp
+public string? Name { get; }
+```
+
+#### Property Value
+[System\.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System\.String')
+
 <a name='DiGi.WebAPI.Classes.InformationController'></a>
 
 ## InformationController Class
@@ -1041,7 +1144,9 @@ The system telemetry information\.
 
 ## InformationController\.GetVersionAsync\(string, CancellationToken\) Method
 
-Retrieves comprehensive version and runtime diagnostic information across the service host, WebAPI framework, and \.NET CLR\.
+Retrieves comprehensive version and runtime diagnostic information across the service host, WebAPI framework, loaded extensions, and \.NET CLR\.
+
+The `Extensions` list carries the simple name and build stamp of every extension loaded from an `extensions/` directory - the public way to identify a deployed extension build.
 
 The source control commit hash is appended to the informational versions only for callers supplying a valid key, because it identifies the exact revision of a publicly readable repository.
 
@@ -2524,6 +2629,8 @@ The built URL string, or null if the builder is null\.
 
 Holds multi\-tier version and runtime diagnostic information\.
 
+The [Extensions](DiGi.WebAPI.Classes.md#DiGi.WebAPI.Classes.VersionInformation.Extensions 'DiGi\.WebAPI\.Classes\.VersionInformation\.Extensions') list carries the build stamps of loaded extension assemblies on the public tier; their commit hashes are trimmed unless the caller is authorized.
+
 ```csharp
 public class VersionInformation : DiGi.Core.Classes.SerializableObject, DiGi.WebAPI.Interfaces.IWebAPISerializableObject, DiGi.WebAPI.Interfaces.IWebAPIObject, DiGi.Core.Interfaces.IObject, DiGi.Core.Interfaces.ISerializableObject, DiGi.Core.Interfaces.ICloneableObject<DiGi.Core.Interfaces.ISerializableObject>, DiGi.Core.Interfaces.ICloneableObject
 ```
@@ -2550,58 +2657,64 @@ public VersionInformation(DiGi.WebAPI.Classes.VersionInformation? versionInforma
 
 The [VersionInformation](DiGi.WebAPI.Classes.md#DiGi.WebAPI.Classes.VersionInformation 'DiGi\.WebAPI\.Classes\.VersionInformation') to copy from\.
 
-<a name='DiGi.WebAPI.Classes.VersionInformation.VersionInformation(string,string,string,string,string,string,System.Nullable_System.DateTime_)'></a>
+<a name='DiGi.WebAPI.Classes.VersionInformation.VersionInformation(string,string,string,string,string,string,System.Nullable_System.DateTime_,System.Collections.Generic.IEnumerable_DiGi.WebAPI.Classes.ExtensionVersionInformation_)'></a>
 
-## VersionInformation\(string, string, string, string, string, string, Nullable\<DateTime\>\) Constructor
+## VersionInformation\(string, string, string, string, string, string, Nullable\<DateTime\>, IEnumerable\<ExtensionVersionInformation\>\) Constructor
 
 Initializes a new instance of the [VersionInformation](DiGi.WebAPI.Classes.md#DiGi.WebAPI.Classes.VersionInformation 'DiGi\.WebAPI\.Classes\.VersionInformation') class\.
 
 ```csharp
-public VersionInformation(string? serviceVersion, string? serviceInformationalVersion, string? webAPIVersion, string? webAPIInformationalVersion, string? runtimeVersion, string? frameworkDescription, System.Nullable<System.DateTime> startTimeUtc);
+public VersionInformation(string? serviceVersion, string? serviceInformationalVersion, string? webAPIVersion, string? webAPIInformationalVersion, string? runtimeVersion, string? frameworkDescription, System.Nullable<System.DateTime> startTimeUtc, System.Collections.Generic.IEnumerable<DiGi.WebAPI.Classes.ExtensionVersionInformation>? extensions=null);
 ```
 #### Parameters
 
-<a name='DiGi.WebAPI.Classes.VersionInformation.VersionInformation(string,string,string,string,string,string,System.Nullable_System.DateTime_).serviceVersion'></a>
+<a name='DiGi.WebAPI.Classes.VersionInformation.VersionInformation(string,string,string,string,string,string,System.Nullable_System.DateTime_,System.Collections.Generic.IEnumerable_DiGi.WebAPI.Classes.ExtensionVersionInformation_).serviceVersion'></a>
 
 `serviceVersion` [System\.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System\.String')
 
 The host service assembly version\.
 
-<a name='DiGi.WebAPI.Classes.VersionInformation.VersionInformation(string,string,string,string,string,string,System.Nullable_System.DateTime_).serviceInformationalVersion'></a>
+<a name='DiGi.WebAPI.Classes.VersionInformation.VersionInformation(string,string,string,string,string,string,System.Nullable_System.DateTime_,System.Collections.Generic.IEnumerable_DiGi.WebAPI.Classes.ExtensionVersionInformation_).serviceInformationalVersion'></a>
 
 `serviceInformationalVersion` [System\.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System\.String')
 
 The host service informational version \(e\.g\., git commit\)\.
 
-<a name='DiGi.WebAPI.Classes.VersionInformation.VersionInformation(string,string,string,string,string,string,System.Nullable_System.DateTime_).webAPIVersion'></a>
+<a name='DiGi.WebAPI.Classes.VersionInformation.VersionInformation(string,string,string,string,string,string,System.Nullable_System.DateTime_,System.Collections.Generic.IEnumerable_DiGi.WebAPI.Classes.ExtensionVersionInformation_).webAPIVersion'></a>
 
 `webAPIVersion` [System\.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System\.String')
 
 The WebAPI framework assembly version\.
 
-<a name='DiGi.WebAPI.Classes.VersionInformation.VersionInformation(string,string,string,string,string,string,System.Nullable_System.DateTime_).webAPIInformationalVersion'></a>
+<a name='DiGi.WebAPI.Classes.VersionInformation.VersionInformation(string,string,string,string,string,string,System.Nullable_System.DateTime_,System.Collections.Generic.IEnumerable_DiGi.WebAPI.Classes.ExtensionVersionInformation_).webAPIInformationalVersion'></a>
 
 `webAPIInformationalVersion` [System\.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System\.String')
 
 The WebAPI framework informational version\.
 
-<a name='DiGi.WebAPI.Classes.VersionInformation.VersionInformation(string,string,string,string,string,string,System.Nullable_System.DateTime_).runtimeVersion'></a>
+<a name='DiGi.WebAPI.Classes.VersionInformation.VersionInformation(string,string,string,string,string,string,System.Nullable_System.DateTime_,System.Collections.Generic.IEnumerable_DiGi.WebAPI.Classes.ExtensionVersionInformation_).runtimeVersion'></a>
 
 `runtimeVersion` [System\.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System\.String')
 
 The \.NET runtime version\.
 
-<a name='DiGi.WebAPI.Classes.VersionInformation.VersionInformation(string,string,string,string,string,string,System.Nullable_System.DateTime_).frameworkDescription'></a>
+<a name='DiGi.WebAPI.Classes.VersionInformation.VersionInformation(string,string,string,string,string,string,System.Nullable_System.DateTime_,System.Collections.Generic.IEnumerable_DiGi.WebAPI.Classes.ExtensionVersionInformation_).frameworkDescription'></a>
 
 `frameworkDescription` [System\.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System\.String')
 
 The platform/framework description\.
 
-<a name='DiGi.WebAPI.Classes.VersionInformation.VersionInformation(string,string,string,string,string,string,System.Nullable_System.DateTime_).startTimeUtc'></a>
+<a name='DiGi.WebAPI.Classes.VersionInformation.VersionInformation(string,string,string,string,string,string,System.Nullable_System.DateTime_,System.Collections.Generic.IEnumerable_DiGi.WebAPI.Classes.ExtensionVersionInformation_).startTimeUtc'></a>
 
 `startTimeUtc` [System\.Nullable&lt;](https://learn.microsoft.com/en-us/dotnet/api/system.nullable-1 'System\.Nullable\`1')[System\.DateTime](https://learn.microsoft.com/en-us/dotnet/api/system.datetime 'System\.DateTime')[&gt;](https://learn.microsoft.com/en-us/dotnet/api/system.nullable-1 'System\.Nullable\`1')
 
 The process start time in UTC\.
+
+<a name='DiGi.WebAPI.Classes.VersionInformation.VersionInformation(string,string,string,string,string,string,System.Nullable_System.DateTime_,System.Collections.Generic.IEnumerable_DiGi.WebAPI.Classes.ExtensionVersionInformation_).extensions'></a>
+
+`extensions` [System\.Collections\.Generic\.IEnumerable&lt;](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.ienumerable-1 'System\.Collections\.Generic\.IEnumerable\`1')[ExtensionVersionInformation](DiGi.WebAPI.Classes.md#DiGi.WebAPI.Classes.ExtensionVersionInformation 'DiGi\.WebAPI\.Classes\.ExtensionVersionInformation')[&gt;](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.ienumerable-1 'System\.Collections\.Generic\.IEnumerable\`1')
+
+The loaded extension assemblies with their build stamps\.
 
 <a name='DiGi.WebAPI.Classes.VersionInformation.VersionInformation(System.Text.Json.Nodes.JsonObject)'></a>
 
@@ -2620,6 +2733,19 @@ public VersionInformation(System.Text.Json.Nodes.JsonObject? jsonObject);
 
 The JSON object to deserialize from\.
 ### Properties
+
+<a name='DiGi.WebAPI.Classes.VersionInformation.Extensions'></a>
+
+## VersionInformation\.Extensions Property
+
+Gets the loaded extension assemblies with their build stamps\.
+
+```csharp
+public System.Collections.Generic.IEnumerable<DiGi.WebAPI.Classes.ExtensionVersionInformation>? Extensions { get; }
+```
+
+#### Property Value
+[System\.Collections\.Generic\.IEnumerable&lt;](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.ienumerable-1 'System\.Collections\.Generic\.IEnumerable\`1')[ExtensionVersionInformation](DiGi.WebAPI.Classes.md#DiGi.WebAPI.Classes.ExtensionVersionInformation 'DiGi\.WebAPI\.Classes\.ExtensionVersionInformation')[&gt;](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.ienumerable-1 'System\.Collections\.Generic\.IEnumerable\`1')
 
 <a name='DiGi.WebAPI.Classes.VersionInformation.FrameworkDescription'></a>
 

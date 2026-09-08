@@ -224,38 +224,46 @@ The URL string to parse\.
 [UrlBuilder](DiGi.WebAPI.Classes.md#DiGi.WebAPI.Classes.UrlBuilder 'DiGi\.WebAPI\.Classes\.UrlBuilder')  
 A [UrlBuilder\(this string\)](DiGi.WebAPI.md#DiGi.WebAPI.Create.UrlBuilder(thisstring) 'DiGi\.WebAPI\.Create\.UrlBuilder\(this string\)') instance, or null if the URL is null or whitespace\.
 
-<a name='DiGi.WebAPI.Create.VersionInformation(bool,System.Reflection.Assembly,System.Nullable_System.DateTime_)'></a>
+<a name='DiGi.WebAPI.Create.VersionInformation(bool,System.Reflection.Assembly,System.Nullable_System.DateTime_,System.Collections.Generic.IEnumerable_System.Reflection.Assembly_)'></a>
 
-## Create\.VersionInformation\(bool, Assembly, Nullable\<DateTime\>\) Method
+## Create\.VersionInformation\(bool, Assembly, Nullable\<DateTime\>, IEnumerable\<Assembly\>\) Method
 
-Creates a new [VersionInformation\(bool, Assembly, Nullable&lt;DateTime&gt;\)](DiGi.WebAPI.md#DiGi.WebAPI.Create.VersionInformation(bool,System.Reflection.Assembly,System.Nullable_System.DateTime_) 'DiGi\.WebAPI\.Create\.VersionInformation\(bool, System\.Reflection\.Assembly, System\.Nullable\<System\.DateTime\>\)') instance containing host service, WebAPI framework, and runtime versions\.
+Creates a new [VersionInformation\(bool, Assembly, Nullable&lt;DateTime&gt;, IEnumerable&lt;Assembly&gt;\)](DiGi.WebAPI.md#DiGi.WebAPI.Create.VersionInformation(bool,System.Reflection.Assembly,System.Nullable_System.DateTime_,System.Collections.Generic.IEnumerable_System.Reflection.Assembly_) 'DiGi\.WebAPI\.Create\.VersionInformation\(bool, System\.Reflection\.Assembly, System\.Nullable\<System\.DateTime\>, System\.Collections\.Generic\.IEnumerable\<System\.Reflection\.Assembly\>\)') instance containing host service, WebAPI framework, runtime, and loaded extension versions\.
+
+Extensions are the assemblies loaded from an `extensions/` directory. Their informational versions follow the same commit-hash rule as the host and framework: trimmed for unauthenticated callers, kept for authorized ones.
 
 ```csharp
-public static DiGi.WebAPI.Classes.VersionInformation VersionInformation(bool includeCommitHash=false, System.Reflection.Assembly? hostAssembly=null, System.Nullable<System.DateTime> startTimeUtc=null);
+public static DiGi.WebAPI.Classes.VersionInformation VersionInformation(bool includeCommitHash=false, System.Reflection.Assembly? hostAssembly=null, System.Nullable<System.DateTime> startTimeUtc=null, System.Collections.Generic.IEnumerable<System.Reflection.Assembly>? extensionAssemblies=null);
 ```
 #### Parameters
 
-<a name='DiGi.WebAPI.Create.VersionInformation(bool,System.Reflection.Assembly,System.Nullable_System.DateTime_).includeCommitHash'></a>
+<a name='DiGi.WebAPI.Create.VersionInformation(bool,System.Reflection.Assembly,System.Nullable_System.DateTime_,System.Collections.Generic.IEnumerable_System.Reflection.Assembly_).includeCommitHash'></a>
 
 `includeCommitHash` [System\.Boolean](https://learn.microsoft.com/en-us/dotnet/api/system.boolean 'System\.Boolean')
 
 Whether the source control commit hash is kept on the informational versions\. False trims everything from the '\+' separator onwards, leaving the build stamp intact\.
 
-<a name='DiGi.WebAPI.Create.VersionInformation(bool,System.Reflection.Assembly,System.Nullable_System.DateTime_).hostAssembly'></a>
+<a name='DiGi.WebAPI.Create.VersionInformation(bool,System.Reflection.Assembly,System.Nullable_System.DateTime_,System.Collections.Generic.IEnumerable_System.Reflection.Assembly_).hostAssembly'></a>
 
 `hostAssembly` [System\.Reflection\.Assembly](https://learn.microsoft.com/en-us/dotnet/api/system.reflection.assembly 'System\.Reflection\.Assembly')
 
 Optional host assembly\. If null, the entry assembly or executing assembly is used\.
 
-<a name='DiGi.WebAPI.Create.VersionInformation(bool,System.Reflection.Assembly,System.Nullable_System.DateTime_).startTimeUtc'></a>
+<a name='DiGi.WebAPI.Create.VersionInformation(bool,System.Reflection.Assembly,System.Nullable_System.DateTime_,System.Collections.Generic.IEnumerable_System.Reflection.Assembly_).startTimeUtc'></a>
 
 `startTimeUtc` [System\.Nullable&lt;](https://learn.microsoft.com/en-us/dotnet/api/system.nullable-1 'System\.Nullable\`1')[System\.DateTime](https://learn.microsoft.com/en-us/dotnet/api/system.datetime 'System\.DateTime')[&gt;](https://learn.microsoft.com/en-us/dotnet/api/system.nullable-1 'System\.Nullable\`1')
 
 Optional process start time in UTC\.
 
+<a name='DiGi.WebAPI.Create.VersionInformation(bool,System.Reflection.Assembly,System.Nullable_System.DateTime_,System.Collections.Generic.IEnumerable_System.Reflection.Assembly_).extensionAssemblies'></a>
+
+`extensionAssemblies` [System\.Collections\.Generic\.IEnumerable&lt;](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.ienumerable-1 'System\.Collections\.Generic\.IEnumerable\`1')[System\.Reflection\.Assembly](https://learn.microsoft.com/en-us/dotnet/api/system.reflection.assembly 'System\.Reflection\.Assembly')[&gt;](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.ienumerable-1 'System\.Collections\.Generic\.IEnumerable\`1')
+
+Optional explicit list of extension assemblies\. If null, the default assembly load context is filtered to assemblies loaded from an `extensions/` directory\.
+
 #### Returns
 [VersionInformation](DiGi.WebAPI.Classes.md#DiGi.WebAPI.Classes.VersionInformation 'DiGi\.WebAPI\.Classes\.VersionInformation')  
-A new [VersionInformation\(bool, Assembly, Nullable&lt;DateTime&gt;\)](DiGi.WebAPI.md#DiGi.WebAPI.Create.VersionInformation(bool,System.Reflection.Assembly,System.Nullable_System.DateTime_) 'DiGi\.WebAPI\.Create\.VersionInformation\(bool, System\.Reflection\.Assembly, System\.Nullable\<System\.DateTime\>\)') instance\.
+A new [VersionInformation\(bool, Assembly, Nullable&lt;DateTime&gt;, IEnumerable&lt;Assembly&gt;\)](DiGi.WebAPI.md#DiGi.WebAPI.Create.VersionInformation(bool,System.Reflection.Assembly,System.Nullable_System.DateTime_,System.Collections.Generic.IEnumerable_System.Reflection.Assembly_) 'DiGi\.WebAPI\.Create\.VersionInformation\(bool, System\.Reflection\.Assembly, System\.Nullable\<System\.DateTime\>, System\.Collections\.Generic\.IEnumerable\<System\.Reflection\.Assembly\>\)') instance\.
 
 <a name='DiGi.WebAPI.Modify'></a>
 

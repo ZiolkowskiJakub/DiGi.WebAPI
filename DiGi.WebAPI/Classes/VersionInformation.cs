@@ -1,5 +1,6 @@
 using DiGi.WebAPI.Interfaces;
 using System;
+using System.Collections.Generic;
 using System.Text.Json.Nodes;
 using System.Text.Json.Serialization;
 
@@ -7,6 +8,7 @@ namespace DiGi.WebAPI.Classes
 {
     /// <summary>
     /// Holds multi-tier version and runtime diagnostic information.
+    /// <para>The <see cref="Extensions"/> list carries the build stamps of loaded extension assemblies on the public tier; their commit hashes are trimmed unless the caller is authorized.</para>
     /// </summary>
     public class VersionInformation : Core.Classes.SerializableObject, IWebAPISerializableObject
     {
@@ -25,6 +27,9 @@ namespace DiGi.WebAPI.Classes
         [JsonInclude, JsonPropertyName(nameof(StartTimeUtc))]
         private readonly DateTime? startTimeUtc;
 
+        [JsonInclude, JsonPropertyName(nameof(Extensions))]
+        private readonly IList<ExtensionVersionInformation>? extensions;
+
         [JsonInclude, JsonPropertyName(nameof(WebAPIInformationalVersion))]
         private readonly string? webAPIInformationalVersion;
 
@@ -41,7 +46,8 @@ namespace DiGi.WebAPI.Classes
         /// <param name="runtimeVersion">The .NET runtime version.</param>
         /// <param name="frameworkDescription">The platform/framework description.</param>
         /// <param name="startTimeUtc">The process start time in UTC.</param>
-        public VersionInformation(string? serviceVersion, string? serviceInformationalVersion, string? webAPIVersion, string? webAPIInformationalVersion, string? runtimeVersion, string? frameworkDescription, DateTime? startTimeUtc)
+        /// <param name="extensions">The loaded extension assemblies with their build stamps.</param>
+        public VersionInformation(string? serviceVersion, string? serviceInformationalVersion, string? webAPIVersion, string? webAPIInformationalVersion, string? runtimeVersion, string? frameworkDescription, DateTime? startTimeUtc, IEnumerable<ExtensionVersionInformation>? extensions = null)
             : base()
         {
             this.serviceVersion = serviceVersion;
@@ -51,6 +57,7 @@ namespace DiGi.WebAPI.Classes
             this.runtimeVersion = runtimeVersion;
             this.frameworkDescription = frameworkDescription;
             this.startTimeUtc = startTimeUtc;
+            this.extensions = extensions == null ? null : new List<ExtensionVersionInformation>(extensions);
         }
 
         /// <summary>
@@ -69,6 +76,18 @@ namespace DiGi.WebAPI.Classes
                 runtimeVersion = versionInformation.runtimeVersion;
                 frameworkDescription = versionInformation.frameworkDescription;
                 startTimeUtc = versionInformation.startTimeUtc;
+
+                if (versionInformation.extensions != null)
+                {
+                    extensions = [];
+                    foreach (ExtensionVersionInformation extensionVersionInformation in versionInformation.extensions)
+                    {
+                        if (Core.Query.Clone(extensionVersionInformation) is ExtensionVersionInformation extensionVersionInformation_Temp)
+                        {
+                            extensions.Add(extensionVersionInformation_Temp);
+                        }
+                    }
+                }
             }
         }
 
@@ -126,6 +145,18 @@ namespace DiGi.WebAPI.Classes
             get
             {
                 return serviceVersion;
+            }
+        }
+
+        /// <summary>
+        /// Gets the loaded extension assemblies with their build stamps.
+        /// </summary>
+        [JsonIgnore]
+        public IEnumerable<ExtensionVersionInformation>? Extensions
+        {
+            get
+            {
+                return extensions;
             }
         }
 
