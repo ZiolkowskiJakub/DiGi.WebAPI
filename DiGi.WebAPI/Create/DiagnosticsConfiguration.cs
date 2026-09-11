@@ -43,8 +43,8 @@ namespace DiGi.WebAPI
                 if (configurationFile.Read(resolvedPath))
                 {
                     string? key = configurationFile.GetValue<string>(nameof(Classes.DiagnosticsConfiguration.Key));
-                    bool enabled = configurationFile.GetValue<bool>(nameof(Classes.DiagnosticsConfiguration.Enabled), defaultValue: !string.IsNullOrWhiteSpace(key));
-                    bool open = configurationFile.GetValue<bool>(nameof(Classes.DiagnosticsConfiguration.Open), defaultValue: false);
+                    bool enabled = configurationFile.GetValue(nameof(Classes.DiagnosticsConfiguration.Enabled), defaultValue: !string.IsNullOrWhiteSpace(key));
+                    bool open = configurationFile.GetValue(nameof(Classes.DiagnosticsConfiguration.Open), defaultValue: false);
 
                     if (open)
                     {

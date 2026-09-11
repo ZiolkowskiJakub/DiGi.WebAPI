@@ -89,7 +89,7 @@ namespace DiGi.WebAPI
             {
                 foreach (ParameterDescriptor parameterDescriptor in actionDescriptor.Parameters)
                 {
-                    EndpointParameterInformation? endpointParameterInformation = Create.EndpointParameterInformation(parameterDescriptor);
+                    EndpointParameterInformation? endpointParameterInformation = EndpointParameterInformation(parameterDescriptor);
                     if (endpointParameterInformation is not null)
                     {
                         endpointParameterInformations.Add(endpointParameterInformation);
