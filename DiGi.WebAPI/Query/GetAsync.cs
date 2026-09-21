@@ -26,16 +26,16 @@ namespace DiGi.WebAPI
 
             postOptions ??= new PostOptions();
 
-            Serilog.Modify.Log("Setting delay : {Delay}s", postOptions.Delay.Seconds);
+            Serilog.Modify.Log(Serilog.Enums.LogEventLevel.Debug, "Setting delay : {Delay}s", postOptions.Delay.Seconds);
 
             using CancellationTokenSource cancellationTokenSource = new(postOptions.Delay);
 
-            Serilog.Modify.Log("GetAsync started - URL: {URL}", requestUri ?? string.Empty);
+            Serilog.Modify.Log(Serilog.Enums.LogEventLevel.Debug, "GetAsync started - URL: {URL}", requestUri ?? string.Empty);
 
             // Binds to the HttpClient instance method - the extension method declared here takes a PostOptions, not a CancellationToken.
             HttpResponseMessage httpResponseMessage = await httpClient.GetAsync(requestUri, cancellationTokenSource.Token).ConfigureAwait(false);
 
-            Serilog.Modify.Log("GetAsync ended", requestUri ?? string.Empty);
+            Serilog.Modify.Log(Serilog.Enums.LogEventLevel.Debug, "GetAsync ended", requestUri ?? string.Empty);
 
             if (httpResponseMessage is null)
             {
@@ -63,23 +63,23 @@ namespace DiGi.WebAPI
 
                 if (!resultRequested)
                 {
-                    Serilog.Modify.Log("Result has not been requested");
+                    Serilog.Modify.Log(Serilog.Enums.LogEventLevel.Debug, "Result has not been requested");
 
                     return new PostResponse<T?>(true, resultRequested);
                 }
 
                 if (httpResponseMessage.StatusCode == System.Net.HttpStatusCode.NoContent || httpResponseMessage.Content.Headers.ContentLength == 0)
                 {
-                    Serilog.Modify.Log("There is no content in response");
+                    Serilog.Modify.Log(Serilog.Enums.LogEventLevel.Debug, "There is no content in response");
 
                     return new PostResponse<T?>(true, resultRequested);
                 }
 
-                Serilog.Modify.Log("Response content processing started");
+                Serilog.Modify.Log(Serilog.Enums.LogEventLevel.Debug, "Response content processing started");
 
                 PostResponse<T?> postResponse = await Create.PostResponse<T>(httpResponseMessage.Content);
 
-                Serilog.Modify.Log("Response content processing ended. Succeeded: {Succeeded}", postResponse.Succeeded);
+                Serilog.Modify.Log(Serilog.Enums.LogEventLevel.Debug, "Response content processing ended. Succeeded: {Succeeded}", postResponse.Succeeded);
 
                 return postResponse;
             }

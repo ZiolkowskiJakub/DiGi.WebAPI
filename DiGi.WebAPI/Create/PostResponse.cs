@@ -29,7 +29,7 @@ namespace DiGi.WebAPI
 
             Type type = typeof(T);
 
-            Serilog.Modify.Log("Response value type: {TypeName}", type.Name);
+            Serilog.Modify.Log(Serilog.Enums.LogEventLevel.Debug, "Response value type: {TypeName}", type.Name);
 
             if (type == typeof(string))
             {
@@ -53,7 +53,7 @@ namespace DiGi.WebAPI
             }
             else if (typeof(Core.Interfaces.ISerializableObject).IsAssignableFrom(type))
             {
-                Serilog.Modify.Log("Converting SerializableObject");
+                Serilog.Modify.Log(Serilog.Enums.LogEventLevel.Debug, "Converting SerializableObject");
 
                 string json = await httpContent.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
                 Core.Interfaces.ISerializableObject? serializableObject = Core.Convert.ToDiGi<Core.Interfaces.ISerializableObject>(json)?.FirstOrDefault();
@@ -66,7 +66,7 @@ namespace DiGi.WebAPI
             }
             else if (typeof(IEnumerable).IsAssignableFrom(type))
             {
-                Serilog.Modify.Log("Converting enumerable");
+                Serilog.Modify.Log(Serilog.Enums.LogEventLevel.Debug, "Converting enumerable");
 
                 Type[] genericTypes = type.GetGenericArguments();
                 if (genericTypes != null && genericTypes.Length == 1)

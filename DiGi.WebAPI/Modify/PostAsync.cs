@@ -21,7 +21,7 @@ namespace DiGi.WebAPI
             PostOptions postOptions_Temp = postOptions is null ? new PostOptions() : new PostOptions(postOptions);
             postOptions_Temp.RequestResult = false;
 
-            Serilog.Modify.Log("Result not requested");
+            Serilog.Modify.Log(Serilog.Enums.LogEventLevel.Debug, "Result not requested");
 
             PostResponse<bool> postResponse = await PostAsync<bool>(httpClient, requestUri, httpContent, postOptions_Temp);
 
@@ -42,7 +42,7 @@ namespace DiGi.WebAPI
             PostOptions postOptions_Temp = postOptions is null ? new PostOptions() : new PostOptions(postOptions);
             postOptions_Temp.RequestResult = false;
 
-            Serilog.Modify.Log("Result not requested");
+            Serilog.Modify.Log(Serilog.Enums.LogEventLevel.Debug, "Result not requested");
 
             PostResponse<bool> postResponse = await PostAsync<bool>(httpClient, requestUri, httpContentFactory, postOptions_Temp);
 
@@ -93,7 +93,7 @@ namespace DiGi.WebAPI
 
             postOptions ??= new PostOptions();
 
-            Serilog.Modify.Log("Setting delay : {Delay}s", postOptions.Delay.TotalSeconds);
+            Serilog.Modify.Log(Serilog.Enums.LogEventLevel.Debug, "Setting delay : {Delay}s", postOptions.Delay.TotalSeconds);
 
             int attemptCount = postOptions.RetryCount < 0 ? 1 : postOptions.RetryCount + 1;
             TimeSpan retryDelay = postOptions.RetryDelay;
@@ -136,7 +136,7 @@ namespace DiGi.WebAPI
 
                 HttpContent? httpContent = await httpContentFactory.Invoke().ConfigureAwait(false);
 
-                Serilog.Modify.Log("PostAsync started - URL: {URL}", requestUri);
+                Serilog.Modify.Log(Serilog.Enums.LogEventLevel.Debug, "PostAsync started - URL: {URL}", requestUri);
 
                 HttpResponseMessage httpResponseMessage;
 
@@ -155,7 +155,7 @@ namespace DiGi.WebAPI
                     throw new TransientPostException($"Request timed out after {postOptions.Delay.TotalSeconds}s", operationCanceledException);
                 }
 
-                Serilog.Modify.Log("PostAsync ended");
+                Serilog.Modify.Log(Serilog.Enums.LogEventLevel.Debug, "PostAsync ended");
 
                 if (httpResponseMessage is null)
                 {
@@ -188,23 +188,23 @@ namespace DiGi.WebAPI
 
                     if (!resultRequested)
                     {
-                        Serilog.Modify.Log("Result has not been requested");
+                        Serilog.Modify.Log(Serilog.Enums.LogEventLevel.Debug, "Result has not been requested");
 
                         return new PostResponse<T?>(true, resultRequested);
                     }
 
                     if (httpResponseMessage.StatusCode == System.Net.HttpStatusCode.NoContent || httpResponseMessage.Content.Headers.ContentLength == 0)
                     {
-                        Serilog.Modify.Log("There is no content in response");
+                        Serilog.Modify.Log(Serilog.Enums.LogEventLevel.Debug, "There is no content in response");
 
                         return new PostResponse<T?>(true, resultRequested);
                     }
 
-                    Serilog.Modify.Log("Response content processing started");
+                    Serilog.Modify.Log(Serilog.Enums.LogEventLevel.Debug, "Response content processing started");
 
                     PostResponse<T?> postResponse = await Create.PostResponse<T>(httpResponseMessage.Content);
 
-                    Serilog.Modify.Log("Response content processing ended. Succeeded: {Succeeded}", postResponse.Succeeded);
+                    Serilog.Modify.Log(Serilog.Enums.LogEventLevel.Debug, "Response content processing ended. Succeeded: {Succeeded}", postResponse.Succeeded);
 
                     return postResponse;
                 }
