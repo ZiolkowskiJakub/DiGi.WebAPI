@@ -33,14 +33,14 @@ namespace DiGi.WebAPI
 
             if (type == typeof(string))
             {
-                Serilog.Modify.Log("Converting string");
+                Serilog.Modify.Log(Serilog.Enums.LogEventLevel.Debug, "Converting string");
 
                 string content = await httpContent.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
                 return new PostResponse<T?>(true, true, (T)(object)content);
             }
             else if (type.IsPrimitive)
             {
-                Serilog.Modify.Log("Converting primitive");
+                Serilog.Modify.Log(Serilog.Enums.LogEventLevel.Debug, "Converting primitive");
 
                 string content = await httpContent.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
 
@@ -102,7 +102,7 @@ namespace DiGi.WebAPI
 
             try
             {
-                Serilog.Modify.Log("Converting from directly json");
+                Serilog.Modify.Log(Serilog.Enums.LogEventLevel.Debug, "Converting from directly json");
 
                 T? result = await httpContent.ReadFromJsonAsync<T>(new JsonSerializerOptions { PropertyNameCaseInsensitive = true }, cancellationToken).ConfigureAwait(false);
                 return new PostResponse<T?>(true, true, result);
